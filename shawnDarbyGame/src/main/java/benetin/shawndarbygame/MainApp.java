@@ -1,3 +1,6 @@
+//Made by Shawn Benedict
+//Made on 10/15/18
+//made to allow users to choose from 3 different games and have a store
 package benetin.shawndarbygame;
 
 import javafx.application.Application;
