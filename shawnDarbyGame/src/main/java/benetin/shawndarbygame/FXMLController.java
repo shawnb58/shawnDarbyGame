@@ -53,8 +53,6 @@ public class FXMLController implements Initializable {
     @FXML
     private Rectangle rec19;
     @FXML
-    private Rectangle rec2;
-    @FXML
     private Rectangle rec20;
     @FXML
     private Rectangle rec21;
@@ -214,9 +212,14 @@ public class FXMLController implements Initializable {
     private Rectangle rec98;
     @FXML
     private Rectangle rec99;
-
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private Label lblCredits;
+
+   
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        lblCredits.setText("$"+MainApp.credits);
         r[0][0] = rec00;
         r[0][1] = rec01;
         r[0][2] = rec02;
@@ -226,7 +229,7 @@ public class FXMLController implements Initializable {
         r[0][6] = rec06;
         r[0][7] = rec07;
         r[0][8] = rec08;
-        r[0][9] = rec19;
+        r[0][9] = rec09;
         r[1][0] = rec10;
         r[1][1] = rec11;
         r[1][2] = rec12;
@@ -317,11 +320,5 @@ public class FXMLController implements Initializable {
         r[9][7] = rec97;
         r[9][8] = rec98;
         r[9][9] = rec99;
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }
