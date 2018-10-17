@@ -1,4 +1,4 @@
-//Made by Shawn Benedict
+//Made by Shawn Benedict and Darby Martin
 //Made on 10/15/18
 //made to allow users to choose from 3 different games and have a store
 package benetin.shawndarbygame;
@@ -10,16 +10,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class MainApp extends Application {
+
+    public static int credits;
+    
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
+
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
