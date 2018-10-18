@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
     public static int credits;
-    
+    public static boolean gameOver;
 
     @Override
     public void start(Stage stage) throws Exception {
