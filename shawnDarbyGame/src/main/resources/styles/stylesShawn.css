@@ -18,6 +18,7 @@ http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
   
 
 }
+
 .rectangle{
     -fx-fill: blue;
 }
@@ -78,7 +79,7 @@ http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
     -fx-background-color: transparent;
    }
 
-.label2 {/*round red*/
+.label {/*round red*/
     -fx-background-color: linear-gradient(#ff5400, #be1d00);
   /*  -fx-background-radius: 30;
     -fx-background-insets: 0;*/
