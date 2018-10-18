@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
 public class FXMLController implements Initializable {
@@ -214,12 +216,61 @@ public class FXMLController implements Initializable {
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
+    @FXML
+    private ImageView imgS1;//first imageView of selections
+    @FXML
+    private ImageView imgS2;//second imageView of selections
+    @FXML
+    private ImageView imgS3;//third imageView of selections
 
-   
+    String piecePick;//piece that is selected//set the imageViews with the pieces they are in the .getId
+
+    @FXML
+    private void gridHover(MouseEvent e) {//when mouse hover over grid
+if (!MainApp.gameOver){
+    return;
+}
+//
+    }
+
+    @FXML
+    private void gridClick(ActionEvent e) {//method for spaces on grid
+if (!MainApp.gameOver){
+    return;
+}
+
+    }
+
+    @FXML
+    private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
+        imgS1.setStyle("-fx-background-color: BROWN");//default colour
+        imgS2.setStyle("-fx-background-color: BROWN");//default colour
+        imgS3.setStyle("-fx-background-color: BROWN");//default colour
+        ImageView i = (ImageView) e.getSource();
+        piecePick = i.getId(); //piece that the user picked//use id property on the imageview
+        i.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
+        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
+            //new pieces method
+            newPieces();
+        }
+    }
+
+    @FXML
+    private void newPieces() {//method that sets new pieces in the imageViews
+        imgS1.setDisable(false);
+        imgS2.setDisable(false);
+        imgS3.setDisable(false);
+    }
+
+    @FXML
+    private void reset() {
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblCredits.setText("$"+MainApp.credits);
+        MainApp.gameOver = true;
+        lblCredits.setText("$" + MainApp.credits);
         r[0][0] = rec00;
         r[0][1] = rec01;
         r[0][2] = rec02;
