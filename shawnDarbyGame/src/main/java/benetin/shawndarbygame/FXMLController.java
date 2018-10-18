@@ -215,8 +215,8 @@ public class FXMLController implements Initializable {
     @FXML
     private Label lblCredits;
 
-   
-
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblCredits.setText("$"+MainApp.credits);
