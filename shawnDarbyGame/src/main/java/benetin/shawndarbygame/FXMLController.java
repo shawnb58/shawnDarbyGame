@@ -7,9 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class FXMLController implements Initializable {
+public class FXMLController implements Initializable {//left to do= gridHover//gridClick//setPieces//reset method                         
 
     Rectangle r[][] = new Rectangle[10][10];//2d array of the rectangles on the grid
     @FXML
@@ -214,12 +217,83 @@ public class FXMLController implements Initializable {
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
+    @FXML
+    private ImageView imgS1;//first imageView of selections
+    @FXML
+    private ImageView imgS2;//second imageView of selections
+    @FXML
+    private ImageView imgS3;//third imageView of selections
+ ImageView iS;// imageView currently selected
+    int piecePick;//piece that is selected//set the imageViews with the pieces they are in the .getId
+    //list what int corresponds to what image
+    //1 = 2 by 2 square
+    //2 = 1 by 3 vertical line
+    //3 = 2 by 2 L
+    Color hoverColour = Color.RED;//hovering colour for grid spaces
+    Color placeColour = Color.MAROON;//setting colour for grid spaces
+
+    @FXML
+    private void gridHover(MouseEvent e) {//when mouse hover over grid
+        if (MainApp.gameOver) {
+            return;
+        }
+        Rectangle sP = (Rectangle) e.getSource();//starting point
+//
+    }
+
+    @FXML
+    private void gridClick(ActionEvent e) {//method for spaces on grid
+        if (MainApp.gameOver) {
+            return;
+        }
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; i < 10; i++) {
+                if (r[i][j].getFill().equals(hoverColour)) {
+                    r[i][j].setFill(placeColour);
+                }
+
+            }
+        }
+
+    }
+
 
     
     
+=======
+    @FXML
+    private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
+        imgS1.setStyle("-fx-background-color: BROWN");//default colour
+        imgS2.setStyle("-fx-background-color: BROWN");//default colour
+        imgS3.setStyle("-fx-background-color: BROWN");//default colour
+         iS = (ImageView) e.getSource();//imageview selected
+        piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
+        iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
+        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
+            //new pieces method
+            setPieces();
+        }
+    }
+
+    @FXML
+    private void setPieces() {//method that sets new pieces in the imageViews
+        imgS1.setDisable(false);
+        imgS2.setDisable(false);
+        imgS3.setDisable(false);
+        //set the 3 images to new random pieces and change their id
+
+    }
+
+    @FXML
+    private void reset() {
+
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblCredits.setText("$"+MainApp.credits);
+        MainApp.gameOver = false; //starts in a game
+        lblCredits.setText("$" + MainApp.credits);
         r[0][0] = rec00;
         r[0][1] = rec01;
         r[0][2] = rec02;
@@ -320,5 +394,6 @@ public class FXMLController implements Initializable {
         r[9][7] = rec97;
         r[9][8] = rec98;
         r[9][9] = rec99;
+        setPieces();
     }
 }
