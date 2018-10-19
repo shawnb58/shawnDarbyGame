@@ -3,24 +3,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" stylesheets="@../styles/stylesShawn.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="benetin.shawndarbygame.Twenty48Controller">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.Twenty48Controller">
    <children>
-      <Label layoutX="154.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="354.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="354.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="254.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="154.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="254.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="154.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="254.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="254.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="154.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="54.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="54.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="54.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="54.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="354.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
-      <Label layoutX="354.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl12" layoutX="154.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl32" layoutX="354.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl33" layoutX="354.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl20" layoutX="254.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl10" layoutX="154.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl21" layoutX="254.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl11" layoutX="154.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl22" layoutX="254.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl23" layoutX="254.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl13" layoutX="154.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl02" layoutX="54.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl01" layoutX="54.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl00" layoutX="54.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl03" layoutX="54.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl30" layoutX="354.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label fx:id="lbl31" layoutX="354.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" />
    </children>
 </AnchorPane>

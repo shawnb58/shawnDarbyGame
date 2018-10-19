@@ -257,6 +257,10 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
 
     }
 
+
+    
+    
+=======
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
@@ -284,6 +288,7 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     private void reset() {
 
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
