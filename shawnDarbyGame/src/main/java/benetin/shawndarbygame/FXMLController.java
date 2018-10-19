@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class FXMLController implements Initializable {//left to do= gridHover//gridClick//setPieces//reset method                         
+public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
     Rectangle r[][] = new Rectangle[10][10];//2d array of the rectangles on the grid
     @FXML
@@ -242,7 +242,8 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
             return;
         }
         Rectangle sP = (Rectangle) e.getSource();//starting point
-//
+
+        //check if it will work with the images they chose (use tries) and if it does then change to the hoverColour
     }
 
     @FXML
