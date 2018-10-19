@@ -223,7 +223,7 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     private ImageView imgS2;//second imageView of selections
     @FXML
     private ImageView imgS3;//third imageView of selections
- ImageView iS;// imageView currently selected
+    ImageView iS;// imageView currently selected
     int piecePick;//piece that is selected//set the imageViews with the pieces they are in the .getId
     //list what int corresponds to what image
     //1 = 2 by 2 square
@@ -231,6 +231,10 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     //3 = 2 by 2 L
     Color hoverColour = Color.RED;//hovering colour for grid spaces
     Color placeColour = Color.MAROON;//setting colour for grid spaces
+    Color nColour = Color.GREY;//neutral colour
+    boolean clearCol[] = new boolean[10]; //to keep track of which columns will be cleared and how many points awarded
+    boolean clearRow[] = new boolean[10];//to keep track of which rows will be cleared and how many points awarded
+    int score;
 
     @FXML
     private void gridHover(MouseEvent e) {//when mouse hover over grid
@@ -254,25 +258,79 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
 
             }
         }
+        checkForLines();
+        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
+            //new pieces method
+            setPieces();
+        }
 
     }
 
+    private void checkForLines() {
+        //reset booleans
+        for (int i = 0; i < 10; i++) {
+            clearCol[i] = false;
+            clearRow[i] = false;
+        }
+        //check for which rows/columns are full and then set their booleans to true
+        for (int i = 0; i < 10; i++) {
+            if ((r[i][0].getFill() == placeColour) && (r[i][1].getFill() == placeColour) && (r[i][2].getFill() == placeColour) && (r[i][3].getFill() == placeColour) && (r[i][4].getFill() == placeColour) && (r[i][5].getFill() == placeColour) && (r[i][6].getFill() == placeColour) && (r[i][7].getFill() == placeColour) && (r[i][8].getFill() == placeColour) && (r[i][9].getFill() == placeColour)) {
+                clearCol[i] = true;
+            }
+            if ((r[0][i].getFill() == placeColour) && (r[1][i].getFill() == placeColour) && (r[2][i].getFill() == placeColour) && (r[3][i].getFill() == placeColour) && (r[4][i].getFill() == placeColour) && (r[5][i].getFill() == placeColour) && (r[6][i].getFill() == placeColour) && (r[7][i].getFill() == placeColour) && (r[8][i].getFill() == placeColour) && (r[9][i].getFill() == placeColour)) {
+                clearRow[i] = true;
+            }
+        }
 
-    
-    
-=======
+        //count full lines and add to score
+        for (int i = 0; i < 10; i++) {
+            if (clearCol[i]) {
+                score += 1000;
+            }
+            if (clearRow[i]) {
+                score += 1000;
+            }
+        }
+
+        //clear lines
+        for (int i = 0; i < 10; i++) {
+            if (clearCol[i]) {
+                r[i][0].setFill(nColour);
+                r[i][1].setFill(nColour);
+                r[i][2].setFill(nColour);
+                r[i][3].setFill(nColour);
+                r[i][4].setFill(nColour);
+                r[i][5].setFill(nColour);
+                r[i][6].setFill(nColour);
+                r[i][7].setFill(nColour);
+                r[i][8].setFill(nColour);
+                r[i][9].setFill(nColour);
+            }
+            if (clearRow[i]) {
+                r[0][i].setFill(nColour);
+                r[1][i].setFill(nColour);
+                r[2][i].setFill(nColour);
+                r[3][i].setFill(nColour);
+                r[4][i].setFill(nColour);
+                r[5][i].setFill(nColour);
+                r[6][i].setFill(nColour);
+                r[7][i].setFill(nColour);
+                r[8][i].setFill(nColour);
+                r[9][i].setFill(nColour);
+            }
+        }
+
+    }
+
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
         imgS2.setStyle("-fx-background-color: BROWN");//default colour
         imgS3.setStyle("-fx-background-color: BROWN");//default colour
-         iS = (ImageView) e.getSource();//imageview selected
+        iS = (ImageView) e.getSource();//imageview selected
         piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
         iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
-        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
-            //new pieces method
-            setPieces();
-        }
+
     }
 
     @FXML
@@ -288,7 +346,6 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     private void reset() {
 
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
