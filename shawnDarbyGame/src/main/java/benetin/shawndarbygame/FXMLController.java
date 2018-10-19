@@ -223,7 +223,7 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     private ImageView imgS2;//second imageView of selections
     @FXML
     private ImageView imgS3;//third imageView of selections
- ImageView iS;// imageView currently selected
+    ImageView iS;// imageView currently selected
     int piecePick;//piece that is selected//set the imageViews with the pieces they are in the .getId
     //list what int corresponds to what image
     //1 = 2 by 2 square
@@ -231,6 +231,8 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     //3 = 2 by 2 L
     Color hoverColour = Color.RED;//hovering colour for grid spaces
     Color placeColour = Color.MAROON;//setting colour for grid spaces
+    boolean clearCol[] = new boolean[10]; //to keep track of which columns will be cleared and how many points awarded
+    boolean clearRow[] = new boolean[10];//to keep track of which rows will be cleared and how many points awarded
 
     @FXML
     private void gridHover(MouseEvent e) {//when mouse hover over grid
@@ -254,19 +256,20 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
 
             }
         }
+        checkForLines();
 
     }
 
+    private void checkForLines() {
 
-    
-    
-=======
+    }
+
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
         imgS2.setStyle("-fx-background-color: BROWN");//default colour
         imgS3.setStyle("-fx-background-color: BROWN");//default colour
-         iS = (ImageView) e.getSource();//imageview selected
+        iS = (ImageView) e.getSource();//imageview selected
         piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
         iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
         if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
@@ -288,7 +291,6 @@ public class FXMLController implements Initializable {//left to do= gridHover//g
     private void reset() {
 
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
