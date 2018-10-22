@@ -7,10 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import java.util.concurrent.ThreadLocalRandom;
+
+
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
@@ -229,21 +233,62 @@ public class FXMLController implements Initializable {//left to do= //figure out
     //1 = 2 by 2 square
     //2 = 1 by 3 vertical line
     //3 = 2 by 2 L
+    Image squareTwoByTwo = ;
+    Image lineOneByThree = ;
+    Image lTwoByTwo = ;
     Color hoverColour = Color.RED;//hovering colour for grid spaces
     Color placeColour = Color.MAROON;//setting colour for grid spaces
     Color nColour = Color.GREY;//neutral colour
     boolean clearCol[] = new boolean[10]; //to keep track of which columns will be cleared and how many points awarded
     boolean clearRow[] = new boolean[10];//to keep track of which rows will be cleared and how many points awarded
     int score;
+    int spot1;
+    int spot2;  //spots are used to find the index in the array
 
     @FXML
     private void gridHover(MouseEvent e) {//when mouse hover over grid
+
         if (MainApp.gameOver) {
             return;
         }
         Rectangle sP = (Rectangle) e.getSource();//starting point
 
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; i < 10; i++) {
+                if (r[i][j].getFill().equals(hoverColour)) {
+                    r[i][j].setFill(nColour);
+                }
+                if (r[i][j] == sP) {
+                    spot1 = i;
+                    spot2 = j;
+                }
+            }
+        }
+
         //check if it will work with the images they chose (use tries) and if it does then change to the hoverColour
+        try {
+            if ((piecePick == 1) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour) && (r[spot1 + 1][spot2 + 1].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1 + 1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+                r[spot1 + 1][spot2 + 1].setFill(hoverColour);
+
+            } else if ((piecePick == 2) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour) && (r[spot1][spot2 + 2].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+                r[spot1][spot2 + 2].setFill(hoverColour);
+
+            } else if ((piecePick == 3) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1 + 1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+
+            }
+        } catch (IndexOutOfBoundsException a) {
+            return;
+        }
+
+        //other stuff?
     }
 
     @FXML
