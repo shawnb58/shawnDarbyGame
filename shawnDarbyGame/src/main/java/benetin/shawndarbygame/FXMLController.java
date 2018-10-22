@@ -233,9 +233,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     //1 = 2 by 2 square
     //2 = 1 by 3 vertical line
     //3 = 2 by 2 L
-    Image squareTwoByTwo = ;
-    Image lineOneByThree = ;
-    Image lTwoByTwo = ;
+
     Color hoverColour = Color.RED;//hovering colour for grid spaces
     Color placeColour = Color.MAROON;//setting colour for grid spaces
     Color nColour = Color.GREY;//neutral colour
@@ -381,11 +379,21 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void setPieces() {//method that sets new pieces in the imageViews
+        int rand = ThreadLocalRandom.current().nextInt(0,3+1);
+
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
         //set the 3 images to new random pieces and change their id
-
+        imgS1.setId(""+rand);
+      
+if (rand==1){
+    imgS1.getStyleClass().add("square2by2");
+}else if (rand==2){
+    imgS1.getStyleClass().add("vline1by3");
+}else if (rand==3){
+    imgS1.getStyleClass().add("l2by2");
+}
     }
 
     @FXML
