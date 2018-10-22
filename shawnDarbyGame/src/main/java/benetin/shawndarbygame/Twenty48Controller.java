@@ -11,6 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -61,23 +62,27 @@ public class Twenty48Controller implements Initializable {
     int dir;
 
     @FXML
-    private void up(KeyEvent e) {
+    private void pressed(KeyEvent e) {
 //1
-    }
+        if (e.getCode() == KeyCode.UP) {
+            dir = 1;
+            move();
+        }
 
-    @FXML
-    private void right(KeyEvent e) {
 //2
-    }
+        if (e.getCode() == KeyCode.RIGHT) {
 
-    @FXML
-    private void down(KeyEvent e) {
+        }
+
 //3
-    }
+        if (e.getCode() == KeyCode.DOWN) {
 
-    @FXML
-    private void left(KeyEvent e) {
+        }
+
 //4
+        if (e.getCode() == KeyCode.LEFT) {
+
+        }
     }
 
     private void move() {
@@ -93,47 +98,61 @@ public class Twenty48Controller implements Initializable {
         }
         if (dir == 1) {
             //up
+
+            //merge
             for (int i = 0; i <= 3; i++) {
-                for (int j = 0; j <= 3; j++) {
-                    if (in[i][j + 3] == in[i][j + 2]) {
-                        in[i][j + 3] *= 2;
-                        in[i][j + 2] = 0;
+                //for (int j = 0; j <= 3; j++) {
+                int j = 0;
+                if (in[i][j + 3] == in[i][j + 2]) {
+                    in[i][j + 3] *= 2;
+                    in[i][j + 2] = 0;
 
-                    }
-                    if (in[i][j + 2] == in[i][j + 1]) {
-                        in[i][j + 2] *= 2;
-                        in[i][j + 1] = 0;
+                }
+                if (in[i][j + 2] == in[i][j + 1]) {
+                    in[i][j + 2] *= 2;
+                    in[i][j + 1] = 0;
 
-                    }
-                    if (in[i][j + 1] == in[i][j]) {
-                        in[i][j + 1] *= 2;
-                        in[i][j] = 0;
+                }
+                if (in[i][j + 1] == in[i][j]) {
+                    in[i][j + 1] *= 2;
+                    in[i][j] = 0;
 
-                    }
+                    //}
                 }
 
             }
+            //move to top
             for (int n = 0; n <= 2; n++) {
                 for (int i = 0; i <= 3; i++) {
-                    for (int j = 0; j <= 3; j++) {
-                        
-                        if (in[i][j + 3] == 0) {
-                            in[i][j + 3] = in[i][j + 2];
-                            in[i][j + 2] = 0;
+                    //for (int j = 0; j <= 3; j++) {
+                    int j = 0;
+                    if (in[i][j + 3] == 0) {
+                        in[i][j + 3] = in[i][j + 2];
+                        in[i][j + 2] = 0;
 
-                        }
-                        if (in[i][j + 2] == 0) {
-                            in[i][j + 2] = in[i][j + 1];
-                            in[i][j + 1] = 0;
+                    }
+                    if (in[i][j + 2] == 0) {
+                        in[i][j + 2] = in[i][j + 1];
+                        in[i][j + 1] = 0;
 
-                        }
-                        if (in[i][j + 1] == 0) {
-                            in[i][j + 1] = in[i][j];
-                            in[i][j] = 0;
+                    }
+                    if (in[i][j + 1] == 0) {
+                        in[i][j + 1] = in[i][j];
+                        in[i][j] = 0;
 
-                        }
+                        // }
                     }
 
+                }
+            }
+            //this doesnt work 
+            for (int i = 0; i <= 3; i++) {
+                for (int j = 0; j <= 3; j++) {
+                    l[i][j].setText("" + in[i][j]);
+                    if (l[i][j].getText().equals("0")) {
+                        l[i][j].setText("");
+
+                    }
                 }
             }
             place();
@@ -141,6 +160,7 @@ public class Twenty48Controller implements Initializable {
     }
 
     private void place() {
+        count = 0;
         //check how many spaces are full
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -179,7 +199,7 @@ public class Twenty48Controller implements Initializable {
         l[3][1] = lbl31;
         l[3][2] = lbl32;
         l[3][3] = lbl03;
-
+        place();
     }
 
 }
