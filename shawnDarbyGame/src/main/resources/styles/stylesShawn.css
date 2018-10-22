@@ -11,6 +11,16 @@ http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
     
     
 }
+.sqaure2by2{
+    -fx-background-image:url("square2by2.png");
+}
+.l2by2{
+    -fx-background-image:url("l2by2.png");
+    
+}
+.vline1by3{
+    -fx-background-image:url("vline1by3.png");
+}
 .label{
      -fx-background-color: black ;
      -fx-text-fill: white;
