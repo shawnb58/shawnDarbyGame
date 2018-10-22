@@ -12,12 +12,12 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    public static int credits;
+    public static int credits=0;
     public static boolean gameOver;
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
