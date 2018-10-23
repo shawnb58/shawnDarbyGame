@@ -25,6 +25,7 @@ public class MainApp extends Application {
         stage.setTitle("Mini Programs");
         stage.setScene(scene);
         stage.show();
+        
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
