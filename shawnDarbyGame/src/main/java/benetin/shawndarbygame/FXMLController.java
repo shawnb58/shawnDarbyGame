@@ -13,7 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
-
+//images are incorrrect//make images transparent background//img dont always show pictures
+              
 
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
@@ -252,7 +253,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         Rectangle sP = (Rectangle) e.getSource();//starting point
 
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
                     r[i][j].setFill(nColour);
                 }
@@ -295,19 +296,19 @@ public class FXMLController implements Initializable {//left to do= //figure out
             return;
         }
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
                     r[i][j].setFill(placeColour);
                 }
 
             }
         }
-        checkForLines();
-        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
-            //new pieces method
-            setPieces();
-        }
-
+//        checkForLines();
+//        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
+//            //new pieces method
+//            setPieces();
+//        }
+        piecePick = 4;//nothing
     }
 
     private void checkForLines() {
@@ -379,26 +380,57 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void setPieces() {//method that sets new pieces in the imageViews
-        int rand = ThreadLocalRandom.current().nextInt(0,3+1);
 
+//reset the img
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
+
         //set the 3 images to new random pieces and change their id
-        imgS1.setId(""+rand);
-      
-if (rand==1){
-    imgS1.getStyleClass().add("square2by2");
-}else if (rand==2){
-    imgS1.getStyleClass().add("vline1by3");
-}else if (rand==3){
-    imgS1.getStyleClass().add("l2by2");
-}
+        int rand = ThreadLocalRandom.current().nextInt(0, 3 );
+        imgS1.setId("" + rand);
+        //first img    
+        if (rand == 1) {
+            imgS1.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS1.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS1.setImage(new Image("/l2by2.PNG"));
+        }
+//second img
+        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        imgS2.setId("" + rand);
+        if (rand == 1) {
+            imgS2.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS2.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS2.setImage(new Image("/l2by2.PNG"));
+        }
+//third img
+        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        imgS3.setId("" + rand);
+        if (rand == 1) {
+            imgS3.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS3.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS3.setImage(new Image("/l2by2.PNG"));
+        }
+
     }
 
     @FXML
     private void reset() {
+        MainApp.gameOver = false;
+        score = 0;
 
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                r[i][j].setFill(nColour);
+            }
+        }
+        setPieces();
     }
 
     @Override
@@ -505,6 +537,6 @@ if (rand==1){
         r[9][7] = rec97;
         r[9][8] = rec98;
         r[9][9] = rec99;
-        setPieces();
+        reset();
     }
 }
