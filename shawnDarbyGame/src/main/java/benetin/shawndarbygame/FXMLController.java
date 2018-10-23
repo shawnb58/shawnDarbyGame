@@ -7,10 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import java.util.concurrent.ThreadLocalRandom;
+//images are incorrrect//make images transparent background//img dont always show pictures
+              
+
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
@@ -229,21 +234,60 @@ public class FXMLController implements Initializable {//left to do= //figure out
     //1 = 2 by 2 square
     //2 = 1 by 3 vertical line
     //3 = 2 by 2 L
+
     Color hoverColour = Color.RED;//hovering colour for grid spaces
     Color placeColour = Color.MAROON;//setting colour for grid spaces
     Color nColour = Color.GREY;//neutral colour
     boolean clearCol[] = new boolean[10]; //to keep track of which columns will be cleared and how many points awarded
     boolean clearRow[] = new boolean[10];//to keep track of which rows will be cleared and how many points awarded
     int score;
+    int spot1;
+    int spot2;  //spots are used to find the index in the array
 
     @FXML
     private void gridHover(MouseEvent e) {//when mouse hover over grid
+
         if (MainApp.gameOver) {
             return;
         }
         Rectangle sP = (Rectangle) e.getSource();//starting point
 
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (r[i][j].getFill().equals(hoverColour)) {
+                    r[i][j].setFill(nColour);
+                }
+                if (r[i][j] == sP) {
+                    spot1 = i;
+                    spot2 = j;
+                }
+            }
+        }
+
         //check if it will work with the images they chose (use tries) and if it does then change to the hoverColour
+        try {
+            if ((piecePick == 1) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour) && (r[spot1 + 1][spot2 + 1].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1 + 1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+                r[spot1 + 1][spot2 + 1].setFill(hoverColour);
+
+            } else if ((piecePick == 2) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour) && (r[spot1][spot2 + 2].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+                r[spot1][spot2 + 2].setFill(hoverColour);
+
+            } else if ((piecePick == 3) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour)) {
+                r[spot1][spot2].setFill(hoverColour);
+                r[spot1 + 1][spot2].setFill(hoverColour);
+                r[spot1][spot2 + 1].setFill(hoverColour);
+
+            }
+        } catch (IndexOutOfBoundsException a) {
+            return;
+        }
+
+        //other stuff?
     }
 
     @FXML
@@ -252,19 +296,19 @@ public class FXMLController implements Initializable {//left to do= //figure out
             return;
         }
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
                     r[i][j].setFill(placeColour);
                 }
 
             }
         }
-        checkForLines();
-        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
-            //new pieces method
-            setPieces();
-        }
-
+//        checkForLines();
+//        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
+//            //new pieces method
+//            setPieces();
+//        }
+        piecePick = 4;//nothing
     }
 
     private void checkForLines() {
@@ -336,16 +380,57 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void setPieces() {//method that sets new pieces in the imageViews
+
+//reset the img
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
+
         //set the 3 images to new random pieces and change their id
+        int rand = ThreadLocalRandom.current().nextInt(0, 3 );
+        imgS1.setId("" + rand);
+        //first img    
+        if (rand == 1) {
+            imgS1.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS1.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS1.setImage(new Image("/l2by2.PNG"));
+        }
+//second img
+        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        imgS2.setId("" + rand);
+        if (rand == 1) {
+            imgS2.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS2.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS2.setImage(new Image("/l2by2.PNG"));
+        }
+//third img
+        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        imgS3.setId("" + rand);
+        if (rand == 1) {
+            imgS3.setImage(new Image("/square2by2.PNG"));
+        } else if (rand == 2) {
+            imgS3.setImage(new Image("/vline1by3.PNG"));
+        } else if (rand == 3) {
+            imgS3.setImage(new Image("/l2by2.PNG"));
+        }
 
     }
 
     @FXML
     private void reset() {
+        MainApp.gameOver = false;
+        score = 0;
 
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                r[i][j].setFill(nColour);
+            }
+        }
+        setPieces();
     }
 
     @Override
@@ -452,6 +537,6 @@ public class FXMLController implements Initializable {//left to do= //figure out
         r[9][7] = rec97;
         r[9][8] = rec98;
         r[9][9] = rec99;
-        setPieces();
+        reset();
     }
 }
