@@ -55,14 +55,16 @@ public class Twenty48Controller implements Initializable {
     private Label lbl33;
     Label l[][] = new Label[4][4];
     int in[][] = new int[4][4];
-    int randX = ThreadLocalRandom.current().nextInt(4);
-    int randY = ThreadLocalRandom.current().nextInt(4);
-    int numPick = ThreadLocalRandom.current().nextInt(2);
+    int randX;
+    int randY;
+    int numPick;
     int count;
     int dir;
-
+boolean upGo;
+String merge1;
     @FXML
     private void pressed(KeyEvent e) {
+        System.out.println("pressed");
 //1
         if (e.getCode() == KeyCode.UP) {
             dir = 1;
@@ -97,66 +99,81 @@ public class Twenty48Controller implements Initializable {
             }
         }
         if (dir == 1) {
-            //up
+            upGo=true;
+mergeUp();
+moveUp();
+upGo=false;
+mergeUp();
 
-            //merge
+setSpaces();
+            //up
+        }
+    }
+
+    private void mergeUp() {
+        //merge
+        for (int i = 0; i <= 3; i++) {
+            //for (int j = 0; j <= 3; j++) {
+            int j = 0;
+            if (in[i][j + 3] == in[i][j + 2]) {
+                in[i][j + 3] *= 2;
+                in[i][j + 2] = 0;
+                //oof 
+merge1=""+i;
+            }
+            if (in[i][j + 2] == in[i][j + 1]) {
+                in[i][j + 2] *= 2;
+                in[i][j + 1] = 0;
+
+            }
+            if (in[i][j + 1] == in[i][j]) {
+                in[i][j + 1] *= 2;
+                in[i][j] = 0;
+
+                //}
+            }
+
+        }
+    }
+    //move to top
+
+    private void moveUp() {
+        for (int n = 0; n <= 2; n++) {
             for (int i = 0; i <= 3; i++) {
                 //for (int j = 0; j <= 3; j++) {
                 int j = 0;
-                if (in[i][j + 3] == in[i][j + 2]) {
-                    in[i][j + 3] *= 2;
+                if (in[i][j + 3] == 0) {
+                    in[i][j + 3] = in[i][j + 2];
                     in[i][j + 2] = 0;
 
                 }
-                if (in[i][j + 2] == in[i][j + 1]) {
-                    in[i][j + 2] *= 2;
+                if (in[i][j + 2] == 0) {
+                    in[i][j + 2] = in[i][j + 1];
                     in[i][j + 1] = 0;
 
                 }
-                if (in[i][j + 1] == in[i][j]) {
-                    in[i][j + 1] *= 2;
+                if (in[i][j + 1] == 0) {
+                    in[i][j + 1] = in[i][j];
                     in[i][j] = 0;
 
-                    //}
+                    // }
                 }
 
             }
-            //move to top
-            for (int n = 0; n <= 2; n++) {
-                for (int i = 0; i <= 3; i++) {
-                    //for (int j = 0; j <= 3; j++) {
-                    int j = 0;
-                    if (in[i][j + 3] == 0) {
-                        in[i][j + 3] = in[i][j + 2];
-                        in[i][j + 2] = 0;
-
-                    }
-                    if (in[i][j + 2] == 0) {
-                        in[i][j + 2] = in[i][j + 1];
-                        in[i][j + 1] = 0;
-
-                    }
-                    if (in[i][j + 1] == 0) {
-                        in[i][j + 1] = in[i][j];
-                        in[i][j] = 0;
-
-                        // }
-                    }
-
-                }
-            }
-            //this doesnt work 
-            for (int i = 0; i <= 3; i++) {
-                for (int j = 0; j <= 3; j++) {
-                    l[i][j].setText("" + in[i][j]);
-                    if (l[i][j].getText().equals("0")) {
-                        l[i][j].setText("");
-
-                    }
-                }
-            }
-            place();
         }
+    }
+
+    private void setSpaces() {
+        for (int i = 0; i <= 3; i++) {
+            for (int j = 0; j <= 3; j++) {
+                l[i][j].setText("" + in[i][j]);
+                if (l[i][j].getText().equals("0")) {
+                    l[i][j].setText("");
+
+                }
+            }
+        }
+        place();
     }
 
     private void place() {
@@ -169,12 +186,18 @@ public class Twenty48Controller implements Initializable {
                 }
             }
         }
-
+        randX = ThreadLocalRandom.current().nextInt(4);
+        randY = ThreadLocalRandom.current().nextInt(4);
+        numPick = ThreadLocalRandom.current().nextInt(2);
         if (count != 16) {
-            if (numPick == 0) {
-                l[randX][randY].setText("2");
-            } else if (numPick == 1) {
-                l[randX][randY].setText("4");
+            if (l[randX][randY].getText().equals("")) {
+                if (numPick == 0) {
+                    l[randX][randY].setText("2");
+                } else if (numPick == 1) {
+                    l[randX][randY].setText("4");
+                }
+            } else {
+                place();
             }
         } else {
             //game over              add this later
@@ -198,7 +221,7 @@ public class Twenty48Controller implements Initializable {
         l[3][0] = lbl30;
         l[3][1] = lbl31;
         l[3][2] = lbl32;
-        l[3][3] = lbl03;
+        l[3][3] = lbl33;
         place();
     }
 
