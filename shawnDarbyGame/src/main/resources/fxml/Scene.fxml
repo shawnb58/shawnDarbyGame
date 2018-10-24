@@ -108,7 +108,7 @@
       <Rectangle fx:id="rec98" arcHeight="5.0" arcWidth="5.0" fill="#86623e" height="40.0" layoutX="470.0" layoutY="145.0" onMouseClicked="#gridClick" onMouseEntered="#gridHover" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Rectangle fx:id="rec99" arcHeight="5.0" arcWidth="5.0" fill="#86623e" height="40.0" layoutX="510.0" layoutY="145.0" onMouseClicked="#gridClick" onMouseEntered="#gridHover" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Label fx:id="lblCredits" layoutX="638.0" layoutY="34.0" prefHeight="21.0" prefWidth="40.0" styleClass="label2" text="Label" />
-      <ImageView fx:id="imgS1" fitHeight="150.0" fitWidth="150.0" layoutX="14.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" styleClass="vline1by3" />
+      <ImageView fx:id="imgS1" fitHeight="150.0" fitWidth="150.0" layoutX="14.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" styleClass="vline1by3" />
       <ImageView fx:id="imgS2" fitHeight="150.0" fitWidth="150.0" layoutX="279.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" />
       <ImageView fx:id="imgS3" fitHeight="150.0" fitWidth="150.0" layoutX="536.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" />
    </children>

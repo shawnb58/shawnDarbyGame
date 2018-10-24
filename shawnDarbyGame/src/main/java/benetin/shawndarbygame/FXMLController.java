@@ -13,7 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
-//images are incorrrect//make images transparent background//img dont always show pictures
+import javafx.scene.effect.ColorAdjust;
+//i rotated image views because images are not correct orientation//array is x=rise and y=run,oops
+//make images transparent background//fix error with setpieces going too many times//lose
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
@@ -220,6 +222,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
+    
     @FXML
     private ImageView imgS1;//first imageView of selections
     @FXML
@@ -492,10 +495,18 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
+     ColorAdjust colorAdjust = new ColorAdjust();
+        
+        imgS1.setEffect(null);
+        imgS2.setEffect(null);
+        imgS3.setEffect(null);
+        
+         colorAdjust.setBrightness(-0.5);
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
         imgS2.setStyle("-fx-background-color: BROWN");//default colour
         imgS3.setStyle("-fx-background-color: BROWN");//default colour
         iS = (ImageView) e.getSource();//imageview selected
+        iS.setEffect(colorAdjust);
         piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
         iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
 
