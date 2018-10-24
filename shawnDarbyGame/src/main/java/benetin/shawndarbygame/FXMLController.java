@@ -222,7 +222,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
-    
+
     @FXML
     private ImageView imgS1;//first imageView of selections
     @FXML
@@ -309,8 +309,8 @@ public class FXMLController implements Initializable {//left to do= //figure out
         if (!allowed) {
             return;
         }
-        allowed=false;
-        
+        allowed = false;
+
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -321,6 +321,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         }
         iS.setId("0");
         iS.setEffect(null);
+        iS.setOpacity(.5);
         iS.setDisable(true);
         checkForLines();
         if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {
@@ -347,9 +348,9 @@ public class FXMLController implements Initializable {//left to do= //figure out
             pick3 = 0;
         }
 
-       if (checkIfCanPlace(pick1, pick2, pick3) == false) {
+        if (checkIfCanPlace(pick1, pick2, pick3) == false) {
             lost();
-      }
+        }
     }
 
     private void lost() {
@@ -497,16 +498,16 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
-     if (MainApp.gameOver){
-         return;
-     }
+        if (MainApp.gameOver) {
+            return;
+        }
         ColorAdjust colorAdjust = new ColorAdjust();
-        
+
         imgS1.setEffect(null);
         imgS2.setEffect(null);
         imgS3.setEffect(null);
-        
-         colorAdjust.setBrightness(-0.5);
+
+        colorAdjust.setBrightness(-0.5);
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
         imgS2.setStyle("-fx-background-color: BROWN");//default colour
         imgS3.setStyle("-fx-background-color: BROWN");//default colour
@@ -524,6 +525,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
+        
+        imgS1.setOpacity(1);//when disabled they will become opacity of half
+        imgS2.setOpacity(1);
+        imgS3.setOpacity(1);
 
         //set the 3 images to new random pieces and change their id
         int rand = ThreadLocalRandom.current().nextInt(1, 4);
@@ -583,6 +588,9 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setEffect(null);
         imgS2.setEffect(null);
         imgS3.setEffect(null);
+        imgS1.setOpacity(1);//when disabled they will become opacity of half
+        imgS2.setOpacity(1);
+        imgS3.setOpacity(1);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 r[i][j].setFill(nColour);
