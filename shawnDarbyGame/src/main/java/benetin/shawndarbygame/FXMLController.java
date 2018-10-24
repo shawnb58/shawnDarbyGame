@@ -296,7 +296,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         if (MainApp.gameOver) {
             return;
         }
-        //if this is not true then they havent sellected a spot yet and it shouldnt continue
+        //if this is not true then they havent selected a spot yet and it shouldnt continue
         boolean allowed = false;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -310,6 +310,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
             return;
         }
         allowed=false;
+        
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -319,9 +320,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
             }
         }
         iS.setId("0");
+        iS.setEffect(null);
         iS.setDisable(true);
         checkForLines();
-        if ((imgS1.getId().equals("0")) && (imgS1.getId().equals("0")) && (imgS1.getId().equals("0"))) {
+        if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {
             //new pieces method
             setPieces();
         }
@@ -346,7 +348,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         }
 
        if (checkIfCanPlace(pick1, pick2, pick3) == false) {
-//            lost();
+            lost();
       }
     }
 
@@ -495,7 +497,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
-     ColorAdjust colorAdjust = new ColorAdjust();
+     if (MainApp.gameOver){
+         return;
+     }
+        ColorAdjust colorAdjust = new ColorAdjust();
         
         imgS1.setEffect(null);
         imgS2.setEffect(null);
