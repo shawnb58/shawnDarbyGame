@@ -13,9 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
-//images are incorrrect//make images transparent background//img dont always show pictures
-              
-
+import javafx.scene.effect.ColorAdjust;
+//i rotated image views because images are not correct orientation//array is x=rise and y=run,oops
+//make images transparent background//fix error with setpieces going too many times//lose
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
@@ -222,6 +222,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
+
     @FXML
     private ImageView imgS1;//first imageView of selections
     @FXML
@@ -272,10 +273,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
                 r[spot1][spot2 + 1].setFill(hoverColour);
                 r[spot1 + 1][spot2 + 1].setFill(hoverColour);
 
-            } else if ((piecePick == 2) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour) && (r[spot1][spot2 + 2].getFill() != placeColour)) {
+            } else if ((piecePick == 2) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1 + 2][spot2].getFill() != placeColour)) {
                 r[spot1][spot2].setFill(hoverColour);
-                r[spot1][spot2 + 1].setFill(hoverColour);
-                r[spot1][spot2 + 2].setFill(hoverColour);
+                r[spot1 + 1][spot2].setFill(hoverColour);
+                r[spot1 + 2][spot2].setFill(hoverColour);
 
             } else if ((piecePick == 3) && (r[spot1][spot2].getFill() != placeColour) && (r[spot1 + 1][spot2].getFill() != placeColour) && (r[spot1][spot2 + 1].getFill() != placeColour)) {
                 r[spot1][spot2].setFill(hoverColour);
@@ -291,10 +292,25 @@ public class FXMLController implements Initializable {//left to do= //figure out
     }
 
     @FXML
-    private void gridClick(ActionEvent e) {//method for spaces on grid
+    private void gridClick(MouseEvent e) {//method for spaces on grid
         if (MainApp.gameOver) {
             return;
         }
+        //if this is not true then they havent selected a spot yet and it shouldnt continue
+        boolean allowed = false;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (r[i][j].getFill().equals(hoverColour)) {
+                    allowed = true;
+                }
+
+            }
+        }
+        if (!allowed) {
+            return;
+        }
+        allowed = false;
+
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -303,12 +319,125 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
             }
         }
-//        checkForLines();
-//        if ((imgS1.isDisabled()) && (imgS1.isDisabled()) && (imgS1.isDisabled())) {
-//            //new pieces method
-//            setPieces();
-//        }
-        piecePick = 4;//nothing
+        iS.setId("0");
+        iS.setEffect(null);
+        iS.setOpacity(.5);
+        iS.setDisable(true);
+        checkForLines();
+        if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {
+            //new pieces method
+            setPieces();
+        }
+        //reset piecePick
+        piecePick = 0;
+        int pick1, pick2, pick3;
+
+        if (!imgS1.getId().equals("0")) {
+            pick1 = Integer.parseInt(imgS1.getId());
+        } else {                    //if pick1=0 then it's disabled and shouldnt be checked
+            pick1 = 0;
+        }
+        if (!imgS2.getId().equals("0")) {
+            pick2 = Integer.parseInt(imgS2.getId());
+        } else {
+            pick2 = 0;
+        }
+        if (!imgS3.getId().equals("0")) {
+            pick3 = Integer.parseInt(imgS3.getId());
+        } else {
+            pick3 = 0;
+        }
+
+        if (checkIfCanPlace(pick1, pick2, pick3) == false) {
+            lost();
+        }
+    }
+
+    private void lost() {
+        //losing stuff
+        MainApp.gameOver = true;
+//find score//find money//disable evrything//alert?//lose screen?
+    }
+
+    private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {
+        //if false then they lost
+        //checks if possible to make a move
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                try {
+                    if ((piecePick1 == 1) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour) && (r[i + 1][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException a) {
+
+                }
+                try {
+                    if ((piecePick1 == 2) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i + 2][j].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+                try {
+                    if ((piecePick1 == 3) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+                //piecePick2
+
+                try {
+                    if ((piecePick2 == 1) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour) && (r[i + 1][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException a) {
+
+                }
+                try {
+                    if ((piecePick2 == 2) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i + 2][j].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+                try {
+                    if ((piecePick2 == 3) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+
+                //piecePick3
+                try {
+                    if ((piecePick3 == 1) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour) && (r[i + 1][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException a) {
+
+                }
+                try {
+                    if ((piecePick3 == 2) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i + 2][j].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+                try {
+                    if ((piecePick3 == 3) && (r[i][j].getFill() != placeColour) && (r[i + 1][j].getFill() != placeColour) && (r[i][j + 1].getFill() != placeColour)) {
+                        return true;
+
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+
+            }
+        }
+        return false;
     }
 
     private void checkForLines() {
@@ -369,10 +498,21 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
     @FXML
     private void pieceClick(MouseEvent e) { //method for which piece to place//mouseEvent is in case we use imageViews for pieces
+        if (MainApp.gameOver) {
+            return;
+        }
+        ColorAdjust colorAdjust = new ColorAdjust();
+
+        imgS1.setEffect(null);
+        imgS2.setEffect(null);
+        imgS3.setEffect(null);
+
+        colorAdjust.setBrightness(-0.5);
         imgS1.setStyle("-fx-background-color: BROWN");//default colour
         imgS2.setStyle("-fx-background-color: BROWN");//default colour
         imgS3.setStyle("-fx-background-color: BROWN");//default colour
         iS = (ImageView) e.getSource();//imageview selected
+        iS.setEffect(colorAdjust);
         piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
         iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
 
@@ -385,37 +525,55 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
+        
+        imgS1.setOpacity(1);//when disabled they will become opacity of half
+        imgS2.setOpacity(1);
+        imgS3.setOpacity(1);
 
         //set the 3 images to new random pieces and change their id
-        int rand = ThreadLocalRandom.current().nextInt(0, 3 );
+        int rand = ThreadLocalRandom.current().nextInt(1, 4);
         imgS1.setId("" + rand);
         //first img    
         if (rand == 1) {
             imgS1.setImage(new Image("/square2by2.PNG"));
+            imgS1.setRotate(0);
+
         } else if (rand == 2) {
             imgS1.setImage(new Image("/vline1by3.PNG"));
+            imgS1.setRotate(0);
         } else if (rand == 3) {
             imgS1.setImage(new Image("/l2by2.PNG"));
+            imgS1.setRotate(270);
         }
 //second img
-        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        rand = ThreadLocalRandom.current().nextInt(1, 4);
         imgS2.setId("" + rand);
         if (rand == 1) {
             imgS2.setImage(new Image("/square2by2.PNG"));
+            imgS2.setRotate(0);
+
         } else if (rand == 2) {
             imgS2.setImage(new Image("/vline1by3.PNG"));
+            imgS2.setRotate(0);
+
         } else if (rand == 3) {
             imgS2.setImage(new Image("/l2by2.PNG"));
+            imgS2.setRotate(270);
         }
 //third img
-        rand = ThreadLocalRandom.current().nextInt(0, 3);
+        rand = ThreadLocalRandom.current().nextInt(1, 4);
         imgS3.setId("" + rand);
         if (rand == 1) {
             imgS3.setImage(new Image("/square2by2.PNG"));
+            imgS3.setRotate(0);
+
         } else if (rand == 2) {
             imgS3.setImage(new Image("/vline1by3.PNG"));
+            imgS3.setRotate(0);
+
         } else if (rand == 3) {
             imgS3.setImage(new Image("/l2by2.PNG"));
+            imgS3.setRotate(270);
         }
 
     }
@@ -424,7 +582,15 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private void reset() {
         MainApp.gameOver = false;
         score = 0;
-
+        imgS1.setId("null");
+        imgS2.setId("null");
+        imgS3.setId("null");
+        imgS1.setEffect(null);
+        imgS2.setEffect(null);
+        imgS3.setEffect(null);
+        imgS1.setOpacity(1);//when disabled they will become opacity of half
+        imgS2.setOpacity(1);
+        imgS3.setOpacity(1);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 r[i][j].setFill(nColour);
