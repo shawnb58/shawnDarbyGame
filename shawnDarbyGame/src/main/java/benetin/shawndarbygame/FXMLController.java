@@ -355,7 +355,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private void lost() {
         //losing stuff
         MainApp.gameOver = true;
-
+//find score//find money//disable evrything//alert?//lose screen?
     }
 
     private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {
@@ -580,6 +580,9 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setId("null");
         imgS2.setId("null");
         imgS3.setId("null");
+        imgS1.setEffect(null);
+        imgS2.setEffect(null);
+        imgS3.setEffect(null);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 r[i][j].setFill(nColour);
