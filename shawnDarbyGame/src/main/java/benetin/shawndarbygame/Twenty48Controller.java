@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -64,6 +66,7 @@ public class Twenty48Controller implements Initializable {
     boolean downGo = false;
     boolean leftGo = false;
     boolean rightGo = false;
+    Alert alert = new Alert(AlertType.INFORMATION);
 
     String merge1;
 
@@ -299,24 +302,24 @@ public class Twenty48Controller implements Initializable {
         }
     }
 
-     private void mergeLeft() {
+    private void mergeLeft() {
         //merge
         for (int j = 0; j <= 3; j++) {
 
             int i = 0;
-            if (in[i][j] == in[i+1][j]) {
+            if (in[i][j] == in[i + 1][j]) {
                 in[i][j] *= 2;
-                in[i+1][j] = 0;
+                in[i + 1][j] = 0;
 
             }
-            if (in[i+1][j ] == in[i+2][j ]) {
-                in[i+1][j ] *= 2;
-                in[i+2][j ] = 0;
+            if (in[i + 1][j] == in[i + 2][j]) {
+                in[i + 1][j] *= 2;
+                in[i + 2][j] = 0;
 
             }
-            if (in[i+2][j] == in[i+3][j]) {
-                in[i+2][j] *= 2;
-                in[i+3][j] = 0;
+            if (in[i + 2][j] == in[i + 3][j]) {
+                in[i + 2][j] *= 2;
+                in[i + 3][j] = 0;
 
             }
 
@@ -330,18 +333,18 @@ public class Twenty48Controller implements Initializable {
 
                 int i = 0;
                 if (in[i][j] == 0) {
-                    in[i][j] = in[i+1][j];
-                    in[i+1][j] = 0;
+                    in[i][j] = in[i + 1][j];
+                    in[i + 1][j] = 0;
 
                 }
-                if (in[i+1][j ] == 0) {
-                    in[i+1][j] = in[i+2][j];
-                    in[i+2][j ] = 0;
+                if (in[i + 1][j] == 0) {
+                    in[i + 1][j] = in[i + 2][j];
+                    in[i + 2][j] = 0;
 
                 }
-                if (in[i+2][j] == 0) {
-                    in[i+2][j] = in[i+3][j];
-                    in[i+3][j] = 0;
+                if (in[i + 2][j] == 0) {
+                    in[i + 2][j] = in[i + 3][j];
+                    in[i + 3][j] = 0;
 
                 }
 
@@ -349,10 +352,6 @@ public class Twenty48Controller implements Initializable {
         }
     }
 
-    
-    
-    
-    
     private void setSpaces() {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -383,8 +382,10 @@ public class Twenty48Controller implements Initializable {
             if (l[randX][randY].getText().equals("")) {
                 if (numPick == 0) {
                     l[randX][randY].setText("2");
+
                 } else if (numPick == 1) {
                     l[randX][randY].setText("4");
+
                 }
             } else {
                 place();
@@ -398,6 +399,32 @@ public class Twenty48Controller implements Initializable {
                     in[i][j] = Integer.parseInt(l[i][j].getText());
                 } catch (NumberFormatException numberFormatException) {
                     in[i][j] = 0;
+
+                }
+                if (in[i][j] == 2) {
+                    l[i][j].setStyle("-fx-background-color:rgb(244,66,244) ");
+                } else if (in[i][j] == 4) {
+                    l[i][j].setStyle("-fx-background-color:rgb(222,66,244) ");
+                } else if (in[i][j] == 8) {
+                    l[i][j].setStyle("-fx-background-color:rgb(200,66,244) ");
+                } else if (in[i][j] == 16) {
+                    l[i][j].setStyle("-fx-background-color:rgb(178,66,244) ");
+                } else if (in[i][j] == 32) {
+                    l[i][j].setStyle("-fx-background-color:rgb(156,66,244) ");
+                } else if (in[i][j] == 64) {
+                    l[i][j].setStyle("-fx-background-color:rgb(134,66,244) ");
+                } else if (in[i][j] == 128) {
+                    l[i][j].setStyle("-fx-background-color:rgb(112,66,244) ");
+                } else if (in[i][j] == 256) {
+                    l[i][j].setStyle("-fx-background-color:rgb(90,66,244) ");
+                } else if (in[i][j] == 512) {
+                    l[i][j].setStyle("-fx-background-color:rgb(68,66,244) ");
+                } else if (in[i][j] == 1024) {
+                    l[i][j].setStyle("-fx-background-color:rgb(46,66,244) ");
+                } else if (in[i][j] == 2048) {
+                    l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
+                } else {
+                    l[i][j].setStyle(null);
                 }
 
             }
@@ -406,7 +433,7 @@ public class Twenty48Controller implements Initializable {
         downGo = false;
         rightGo = false;
         leftGo = false;
-       
+
         moveUpC();
         moveUpC();
         mergeRightC();
@@ -415,6 +442,13 @@ public class Twenty48Controller implements Initializable {
         moveDownC();
         mergeLeftC();
         moveLeftC();
+        if (!upGo && !rightGo && !downGo && !leftGo) {
+            alert.setTitle("You lose");
+            alert.setHeaderText(null);
+            alert.setContentText("sadly you have no more moves");
+            alert.showAndWait();
+        }
+
     }
 
     private void mergeUpC() {
@@ -462,21 +496,22 @@ public class Twenty48Controller implements Initializable {
             }
         }
     }
-private void mergeRightC() {
+
+    private void mergeRightC() {
         //merge
         for (int j = 0; j <= 3; j++) {
 
             int i = 0;
-            if (in[i + 3][j] == in[i + 2][j]&& in[i+3][j] != 0) {
-                rightGo=true;
+            if (in[i + 3][j] == in[i + 2][j] && in[i + 3][j] != 0) {
+                rightGo = true;
 
             }
-            if (in[i + 2][j] == in[i + 1][j]&& in[i+2][j] != 0) {
-                rightGo=true;
+            if (in[i + 2][j] == in[i + 1][j] && in[i + 2][j] != 0) {
+                rightGo = true;
 
             }
-            if (in[i + 1][j] == in[i][j]&& in[i+1][j] != 0) {
-                rightGo=true;
+            if (in[i + 1][j] == in[i][j] && in[i + 1][j] != 0) {
+                rightGo = true;
 
             }
 
@@ -489,15 +524,15 @@ private void mergeRightC() {
             for (int j = 0; j <= 3; j++) {
 
                 int i = 0;
-                if (in[i + 3][j] == 0&& in[i+2][j] != 0) {
-                  rightGo=true;
+                if (in[i + 3][j] == 0 && in[i + 2][j] != 0) {
+                    rightGo = true;
                 }
-                if (in[i + 2][j] == 0&& in[i+1][j] != 0) {
-                   rightGo=true;
+                if (in[i + 2][j] == 0 && in[i + 1][j] != 0) {
+                    rightGo = true;
 
                 }
-                if (in[i + 1][j] == 0&& in[i][j] != 0) {
-                   rightGo=true;
+                if (in[i + 1][j] == 0 && in[i][j] != 0) {
+                    rightGo = true;
 
                 }
 
@@ -549,21 +584,22 @@ private void mergeRightC() {
             }
         }
     }
+
     private void mergeLeftC() {
         //merge
         for (int j = 0; j <= 3; j++) {
 
             int i = 0;
-            if (in[i][j] == in[i+1][j]&& in[i][j] != 0) {
-                leftGo=true;
+            if (in[i][j] == in[i + 1][j] && in[i][j] != 0) {
+                leftGo = true;
 
             }
-            if (in[i+1][j ] == in[i+2][j ]&& in[i+1][j] != 0) {
-               leftGo=true;
+            if (in[i + 1][j] == in[i + 2][j] && in[i + 1][j] != 0) {
+                leftGo = true;
 
             }
-            if (in[i+2][j] == in[i+3][j]&& in[i+2][j] != 0) {
-               leftGo=true;
+            if (in[i + 2][j] == in[i + 3][j] && in[i + 2][j] != 0) {
+                leftGo = true;
 
             }
 
@@ -576,22 +612,21 @@ private void mergeRightC() {
             for (int j = 0; j <= 3; j++) {
 
                 int i = 0;
-                if (in[i][j] == 0&& in[i+1][j] != 0) {
-                    leftGo=true;
+                if (in[i][j] == 0 && in[i + 1][j] != 0) {
+                    leftGo = true;
 
                 }
-                if (in[i+1][j ] == 0&& in[i+2][j] != 0) {
-                    leftGo=true;
+                if (in[i + 1][j] == 0 && in[i + 2][j] != 0) {
+                    leftGo = true;
                 }
-                if (in[i+2][j] == 0&& in[i+3][j] != 0) {
-                     leftGo=true;
+                if (in[i + 2][j] == 0 && in[i + 3][j] != 0) {
+                    leftGo = true;
 
                 }
 
             }
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
