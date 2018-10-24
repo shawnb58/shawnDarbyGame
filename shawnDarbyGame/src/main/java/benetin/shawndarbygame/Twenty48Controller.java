@@ -434,7 +434,7 @@ public class Twenty48Controller implements Initializable {
         rightGo = false;
         leftGo = false;
 
-        moveUpC();
+        mergeUpC();
         moveUpC();
         mergeRightC();
         moveRightC();
@@ -447,6 +447,7 @@ public class Twenty48Controller implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("sadly you have no more moves");
             alert.showAndWait();
+            
         }
 
     }
