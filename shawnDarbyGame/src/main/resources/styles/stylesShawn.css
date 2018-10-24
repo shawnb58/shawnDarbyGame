@@ -28,9 +28,9 @@ http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
   -fx-background-size: stretch;
 }
 .label{
-     -fx-background-color: black ;
-     -fx-text-fill: white;
-     -fx-border-color: white;
+     -fx-background-color: white ;
+     -fx-text-fill: black;
+     -fx-border-color: purple;
 }
 .hit{
    -fx-background-image: url("../m.png");

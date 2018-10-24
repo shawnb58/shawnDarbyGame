@@ -60,8 +60,13 @@ public class Twenty48Controller implements Initializable {
     int numPick;
     int count;
     int dir;
-boolean upGo;
-String merge1;
+    boolean upGo = false;
+    boolean downGo = false;
+    boolean leftGo = false;
+    boolean rightGo = false;
+
+    String merge1;
+
     @FXML
     private void pressed(KeyEvent e) {
         System.out.println("pressed");
@@ -73,21 +78,25 @@ String merge1;
 
 //2
         if (e.getCode() == KeyCode.RIGHT) {
-
+            dir = 2;
+            move();
         }
 
 //3
         if (e.getCode() == KeyCode.DOWN) {
-
+            dir = 3;
+            move();
         }
 
 //4
         if (e.getCode() == KeyCode.LEFT) {
-
+            dir = 4;
+            move();
         }
     }
 
     private void move() {
+
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
                 try {
@@ -99,27 +108,56 @@ String merge1;
             }
         }
         if (dir == 1) {
-            upGo=true;
-mergeUp();
-moveUp();
-upGo=false;
-mergeUp();
+            if (upGo) {
+                moveUp();
+                mergeUp();
+                moveUp();
 
-setSpaces();
-            //up
+                setSpaces();
+                //up
+            }
+        }
+        if (dir == 2) {
+            if (rightGo) {
+                moveRight();
+                mergeRight();
+                moveRight();
+
+                setSpaces();
+                //right
+            }
+        }
+        if (dir == 3) {
+            if (downGo) {
+                moveDown();
+                mergeDown();
+                moveDown();
+
+                setSpaces();
+                //down
+            }
+        }
+        if (dir == 4) {
+            if (leftGo) {
+                moveLeft();
+                mergeLeft();
+                moveLeft();
+
+                setSpaces();
+                //up
+            }
         }
     }
 
     private void mergeUp() {
         //merge
         for (int i = 0; i <= 3; i++) {
-            //for (int j = 0; j <= 3; j++) {
+
             int j = 0;
             if (in[i][j + 3] == in[i][j + 2]) {
                 in[i][j + 3] *= 2;
                 in[i][j + 2] = 0;
-                //oof 
-merge1=""+i;
+
             }
             if (in[i][j + 2] == in[i][j + 1]) {
                 in[i][j + 2] *= 2;
@@ -130,7 +168,6 @@ merge1=""+i;
                 in[i][j + 1] *= 2;
                 in[i][j] = 0;
 
-                //}
             }
 
         }
@@ -140,7 +177,7 @@ merge1=""+i;
     private void moveUp() {
         for (int n = 0; n <= 2; n++) {
             for (int i = 0; i <= 3; i++) {
-                //for (int j = 0; j <= 3; j++) {
+
                 int j = 0;
                 if (in[i][j + 3] == 0) {
                     in[i][j + 3] = in[i][j + 2];
@@ -156,13 +193,166 @@ merge1=""+i;
                     in[i][j + 1] = in[i][j];
                     in[i][j] = 0;
 
-                    // }
                 }
 
             }
         }
     }
 
+    private void mergeDown() {
+        //merge
+        for (int i = 0; i <= 3; i++) {
+
+            int j = 0;
+            if (in[i][j] == in[i][j + 1]) {
+                in[i][j] *= 2;
+                in[i][j + 1] = 0;
+
+            }
+            if (in[i][j + 1] == in[i][j + 2]) {
+                in[i][j + 1] *= 2;
+                in[i][j + 2] = 0;
+
+            }
+            if (in[i][j + 2] == in[i][j + 3]) {
+                in[i][j + 2] *= 2;
+                in[i][j + 3] = 0;
+
+            }
+
+        }
+    }
+    //move to bottom
+
+    private void moveDown() {
+        for (int n = 0; n <= 2; n++) {
+            for (int i = 0; i <= 3; i++) {
+
+                int j = 0;
+                if (in[i][j] == 0) {
+                    in[i][j] = in[i][j + 1];
+                    in[i][j + 1] = 0;
+
+                }
+                if (in[i][j + 1] == 0) {
+                    in[i][j + 1] = in[i][j + 2];
+                    in[i][j + 2] = 0;
+
+                }
+                if (in[i][j + 2] == 0) {
+                    in[i][j + 2] = in[i][j + 3];
+                    in[i][j + 3] = 0;
+
+                }
+
+            }
+        }
+    }
+
+    private void mergeRight() {
+        //merge
+        for (int j = 0; j <= 3; j++) {
+
+            int i = 0;
+            if (in[i + 3][j] == in[i + 2][j]) {
+                in[i + 3][j] *= 2;
+                in[i + 2][j] = 0;
+
+            }
+            if (in[i + 2][j] == in[i + 1][j]) {
+                in[i + 2][j] *= 2;
+                in[i + 1][j] = 0;
+
+            }
+            if (in[i + 1][j] == in[i][j]) {
+                in[i + 1][j] *= 2;
+                in[i][j] = 0;
+
+            }
+
+        }
+    }
+    //move to right
+
+    private void moveRight() {
+        for (int n = 0; n <= 2; n++) {
+            for (int j = 0; j <= 3; j++) {
+
+                int i = 0;
+                if (in[i + 3][j] == 0) {
+                    in[i + 3][j] = in[i + 2][j];
+                    in[i + 2][j] = 0;
+
+                }
+                if (in[i + 2][j] == 0) {
+                    in[i + 2][j] = in[i + 1][j];
+                    in[i + 1][j] = 0;
+
+                }
+                if (in[i + 1][j] == 0) {
+                    in[i + 1][j] = in[i][j];
+                    in[i][j] = 0;
+
+                }
+
+            }
+        }
+    }
+
+     private void mergeLeft() {
+        //merge
+        for (int j = 0; j <= 3; j++) {
+
+            int i = 0;
+            if (in[i][j] == in[i+1][j]) {
+                in[i][j] *= 2;
+                in[i+1][j] = 0;
+
+            }
+            if (in[i+1][j ] == in[i+2][j ]) {
+                in[i+1][j ] *= 2;
+                in[i+2][j ] = 0;
+
+            }
+            if (in[i+2][j] == in[i+3][j]) {
+                in[i+2][j] *= 2;
+                in[i+3][j] = 0;
+
+            }
+
+        }
+    }
+    //move to bottom
+
+    private void moveLeft() {
+        for (int n = 0; n <= 2; n++) {
+            for (int j = 0; j <= 3; j++) {
+
+                int i = 0;
+                if (in[i][j] == 0) {
+                    in[i][j] = in[i+1][j];
+                    in[i+1][j] = 0;
+
+                }
+                if (in[i+1][j ] == 0) {
+                    in[i+1][j] = in[i+2][j];
+                    in[i+2][j ] = 0;
+
+                }
+                if (in[i+2][j] == 0) {
+                    in[i+2][j] = in[i+3][j];
+                    in[i+3][j] = 0;
+
+                }
+
+            }
+        }
+    }
+
+    
+    
+    
+    
     private void setSpaces() {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -202,7 +392,206 @@ merge1=""+i;
         } else {
             //game over              add this later
         }
+        for (int i = 0; i <= 3; i++) {
+            for (int j = 0; j <= 3; j++) {
+                try {
+                    in[i][j] = Integer.parseInt(l[i][j].getText());
+                } catch (NumberFormatException numberFormatException) {
+                    in[i][j] = 0;
+                }
+
+            }
+        }
+        upGo = false;
+        downGo = false;
+        rightGo = false;
+        leftGo = false;
+       
+        moveUpC();
+        moveUpC();
+        mergeRightC();
+        moveRightC();
+        mergeDownC();
+        moveDownC();
+        mergeLeftC();
+        moveLeftC();
     }
+
+    private void mergeUpC() {
+        //merge
+        for (int i = 0; i <= 3; i++) {
+
+            int j = 0;
+            if (in[i][j + 3] == in[i][j + 2] && in[i][j + 3] != 0) {
+                //
+                upGo = true;
+            }
+            if (in[i][j + 2] == in[i][j + 1] && in[i][j + 2] != 0) {
+                //
+                upGo = true;
+            }
+            if (in[i][j + 1] == in[i][j] && in[i][j + 1] != 0) {
+                //
+                upGo = true;
+
+            }
+
+        }
+    }
+    //move to top
+
+    private void moveUpC() {
+        for (int n = 0; n <= 2; n++) {
+            for (int i = 0; i <= 3; i++) {
+
+                int j = 0;
+                if (in[i][j + 3] == 0 && in[i][j + 2] != 0) {
+                    //
+                    upGo = true;
+                }
+                if (in[i][j + 2] == 0 && in[i][j + 1] != 0) {
+                    //
+                    upGo = true;
+                }
+                if (in[i][j + 1] == 0 && in[i][j] != 0) {
+                    //
+                    upGo = true;
+
+                }
+
+            }
+        }
+    }
+private void mergeRightC() {
+        //merge
+        for (int j = 0; j <= 3; j++) {
+
+            int i = 0;
+            if (in[i + 3][j] == in[i + 2][j]&& in[i+3][j] != 0) {
+                rightGo=true;
+
+            }
+            if (in[i + 2][j] == in[i + 1][j]&& in[i+2][j] != 0) {
+                rightGo=true;
+
+            }
+            if (in[i + 1][j] == in[i][j]&& in[i+1][j] != 0) {
+                rightGo=true;
+
+            }
+
+        }
+    }
+    //move to right
+
+    private void moveRightC() {
+        for (int n = 0; n <= 2; n++) {
+            for (int j = 0; j <= 3; j++) {
+
+                int i = 0;
+                if (in[i + 3][j] == 0&& in[i+2][j] != 0) {
+                  rightGo=true;
+                }
+                if (in[i + 2][j] == 0&& in[i+1][j] != 0) {
+                   rightGo=true;
+
+                }
+                if (in[i + 1][j] == 0&& in[i][j] != 0) {
+                   rightGo=true;
+
+                }
+
+            }
+        }
+    }
+
+    private void mergeDownC() {
+        //merge
+        for (int i = 0; i <= 3; i++) {
+
+            int j = 0;
+            if (in[i][j] == in[i][j + 1] && in[i][j] != 0) {
+                //
+                downGo = true;
+
+            }
+            if (in[i][j + 1] == in[i][j + 2] && in[i][j + 1] != 0) {
+                //
+                downGo = true;
+
+            }
+            if (in[i][j + 2] == in[i][j + 3] && in[i][j + 2] != 0) {
+                //
+                downGo = true;
+
+            }
+
+        }
+    }
+    //move to bottom
+
+    private void moveDownC() {
+        for (int n = 0; n <= 2; n++) {
+            for (int i = 0; i <= 3; i++) {
+
+                int j = 0;
+                if (in[i][j] == 0 && in[i][j + 1] != 0) {
+                    downGo = true;
+                }
+                if (in[i][j + 1] == 0 && in[i][j + 2] != 0) {
+                    downGo = true;
+                }
+                if (in[i][j + 2] == 0 && in[i][j + 3] != 0) {
+                    downGo = true;
+
+                }
+
+            }
+        }
+    }
+    private void mergeLeftC() {
+        //merge
+        for (int j = 0; j <= 3; j++) {
+
+            int i = 0;
+            if (in[i][j] == in[i+1][j]&& in[i][j] != 0) {
+                leftGo=true;
+
+            }
+            if (in[i+1][j ] == in[i+2][j ]&& in[i+1][j] != 0) {
+               leftGo=true;
+
+            }
+            if (in[i+2][j] == in[i+3][j]&& in[i+2][j] != 0) {
+               leftGo=true;
+
+            }
+
+        }
+    }
+    //move to bottom
+
+    private void moveLeftC() {
+        for (int n = 0; n <= 2; n++) {
+            for (int j = 0; j <= 3; j++) {
+
+                int i = 0;
+                if (in[i][j] == 0&& in[i+1][j] != 0) {
+                    leftGo=true;
+
+                }
+                if (in[i+1][j ] == 0&& in[i+2][j] != 0) {
+                    leftGo=true;
+                }
+                if (in[i+2][j] == 0&& in[i+3][j] != 0) {
+                     leftGo=true;
+
+                }
+
+            }
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
