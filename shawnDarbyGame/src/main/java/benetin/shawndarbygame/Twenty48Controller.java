@@ -55,24 +55,26 @@ public class Twenty48Controller implements Initializable {
     private Label lbl32;
     @FXML
     private Label lbl33;
+    @FXML
+    private Label lblScore;
     Label l[][] = new Label[4][4];
     int in[][] = new int[4][4];
     int randX;
     int randY;
     int numPick;
-    int count;
     int dir;
     boolean upGo = false;
     boolean downGo = false;
     boolean leftGo = false;
     boolean rightGo = false;
+    boolean endG = false;
+    int score = 0;
     Alert alert = new Alert(AlertType.INFORMATION);
 
     String merge1;
 
     @FXML
     private void pressed(KeyEvent e) {
-        System.out.println("pressed");
 //1
         if (e.getCode() == KeyCode.UP) {
             dir = 1;
@@ -366,7 +368,7 @@ public class Twenty48Controller implements Initializable {
     }
 
     private void place() {
-        count = 0;
+        int count = 0;
         //check how many spaces are full
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -389,18 +391,21 @@ public class Twenty48Controller implements Initializable {
                 }
             } else {
                 place();
+                return;
             }
-        } else {
-            //game over              add this later
-        }
+        } 
+        score = 0;
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
+
                 try {
                     in[i][j] = Integer.parseInt(l[i][j].getText());
                 } catch (NumberFormatException numberFormatException) {
                     in[i][j] = 0;
 
                 }
+
+                score += in[i][j];
                 if (in[i][j] == 2) {
                     l[i][j].setStyle("-fx-background-color:rgb(244,66,244) ");
                 } else if (in[i][j] == 4) {
@@ -429,6 +434,7 @@ public class Twenty48Controller implements Initializable {
 
             }
         }
+lblScore.setText(""+score);
         upGo = false;
         downGo = false;
         rightGo = false;
@@ -442,7 +448,8 @@ public class Twenty48Controller implements Initializable {
         moveDownC();
         mergeLeftC();
         moveLeftC();
-        if (!upGo && !rightGo && !downGo && !leftGo) {
+        if (!upGo && !rightGo && !downGo && !leftGo /*&& !endG*/) {
+        //    endG = true;
             alert.setTitle("You lose");
             alert.setHeaderText(null);
             alert.setContentText("sadly you have no more moves");
