@@ -1,6 +1,7 @@
 //Wood Block Game
 package benetin.shawndarbygame;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,9 +14,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
+import javafx.stage.Stage;
 //i rotated image views because images are not correct orientation//array is x=rise and y=run,oops
-//make images transparent background//fix error with setpieces going too many times//lose
+//make images transparent background//lose
 
 public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
 
@@ -222,6 +228,8 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private Rectangle rec99;
     @FXML
     private Label lblCredits;
+    @FXML
+    private Label lblScore;
 
     @FXML
     private ImageView imgS1;//first imageView of selections
@@ -244,6 +252,32 @@ public class FXMLController implements Initializable {//left to do= //figure out
     int score;
     int spot1;
     int spot2;  //spots are used to find the index in the array
+
+    @FXML
+    private void goHome(ActionEvent e) {
+        Parent parentHome;
+        try {
+            parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneHome = new Scene(parentHome);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblCredits).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneHome); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneHome.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void replay(ActionEvent e) {
+        reset();
+    }
 
     @FXML
     private void gridHover(MouseEvent e) {//when mouse hover over grid
@@ -315,10 +349,12 @@ public class FXMLController implements Initializable {//left to do= //figure out
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
                     r[i][j].setFill(placeColour);
+                    score+=100;
                 }
 
             }
         }
+        lblScore.setText(""+score);
         iS.setId("0");
         iS.setEffect(null);
         iS.setOpacity(.5);
@@ -356,7 +392,12 @@ public class FXMLController implements Initializable {//left to do= //figure out
     private void lost() {
         //losing stuff
         MainApp.gameOver = true;
+
 //find score//find money//disable evrything//alert?//lose screen?
+
+        MainApp.credits +=(score / 100) ;
+        lblCredits.setText("$" + MainApp.credits);
+        System.out.println(MainApp.credits);
     }
 
     private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {
@@ -465,7 +506,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
                 score += 1000;
             }
         }
-
+        lblScore.setText("" + score);
         //clear lines
         for (int i = 0; i < 10; i++) {
             if (clearCol[i]) {
@@ -525,7 +566,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setDisable(false);
         imgS2.setDisable(false);
         imgS3.setDisable(false);
-        
+
         imgS1.setOpacity(1);//when disabled they will become opacity of half
         imgS2.setOpacity(1);
         imgS3.setOpacity(1);
@@ -591,6 +632,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         imgS1.setOpacity(1);//when disabled they will become opacity of half
         imgS2.setOpacity(1);
         imgS3.setOpacity(1);
+        lblScore.setText("");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 r[i][j].setFill(nColour);
