@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.HomeController">
    <children>
-      <ImageView fitHeight="181.0" fitWidth="218.0" layoutX="45.0" layoutY="123.0" onMouseClicked="#open2048" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="192.0" fitWidth="239.0" layoutX="317.0" layoutY="118.0" onMouseClicked="#openWoodBlock" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="181.0" fitWidth="218.0" layoutX="37.0" layoutY="67.0" onMouseClicked="#open2048" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../twenty48.PNG" />
+         </image></ImageView>
+      <ImageView fitHeight="192.0" fitWidth="239.0" layoutX="398.0" layoutY="66.0" onMouseClicked="#openWoodBlock" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../woodBlockPic.PNG" />
+         </image></ImageView>
+      <Label layoutX="132.0" layoutY="7.0" text="Shawn And Darby's Assorted Games">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="443.0" layoutY="264.0" text="Wood Block Puzzle" />
+      <Label layoutX="79.0" layoutY="255.0" text="Twenty Fourty Eight" />
    </children>
 </AnchorPane>
