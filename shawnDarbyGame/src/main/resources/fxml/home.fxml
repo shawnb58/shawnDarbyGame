@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,10 +22,10 @@
                   <Stop color="#ff1f52" offset="0.16414835164835165" />
                   <Stop color="#1fffab" offset="0.2644230769230769" />
                   <Stop color="#363333" offset="0.4349157733537519" />
-                  <Stop color="#1f23ff" offset="0.6099732006125576" />
+                  <Stop color="#1f23ff" offset="0.7309532924961714" />
                   <Stop color="#363232" offset="0.7366812934385677" />
-                  <Stop color="#29e151" offset="0.986855889133837" />
-                  <Stop color="#ff1f53" offset="1.0" />
+                  <Stop color="#ff1f53" offset="0.9877488514548239" />
+                  <Stop color="#29e151" offset="1.0" />
                </stops>
             </RadialGradient>
          </fill>
@@ -32,11 +33,17 @@
       <ImageView fitHeight="181.0" fitWidth="218.0" layoutX="37.0" layoutY="92.0" onMouseClicked="#open2048" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../twenty48.PNG" />
-         </image></ImageView>
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ImageView>
       <ImageView fitHeight="192.0" fitWidth="239.0" layoutX="346.0" layoutY="87.0" onMouseClicked="#openWoodBlock" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../woodBlockPic.PNG" />
-         </image></ImageView>
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ImageView>
       <Label layoutX="132.0" layoutY="7.0" text="Shawn And Darby's Assorted Games">
          <font>
             <Font size="21.0" />
