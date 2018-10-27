@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="709.0" prefWidth="683.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.FXMLController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="709.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
          <fill>
@@ -131,7 +131,7 @@
       <ImageView fx:id="imgS3" fitHeight="150.0" fitWidth="150.0" layoutX="536.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" />
       <Label layoutX="337.0" layoutY="37.0" prefHeight="19.0" prefWidth="40.0" text="Score:" />
       <Label fx:id="lblScore" layoutX="371.0" layoutY="37.0" text="0" />
-      <MenuBar layoutX="6.0" layoutY="2.0" opacity="0.7" prefHeight="27.0" prefWidth="681.0">
+      <MenuBar layoutX="6.0" layoutY="2.0" opacity="0.7" prefHeight="27.0" prefWidth="685.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
