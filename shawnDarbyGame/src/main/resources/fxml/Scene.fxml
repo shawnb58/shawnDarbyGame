@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="709.0" prefWidth="683.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.FXMLController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="709.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#000000dc" />
+                  <Stop color="#000000dc" offset="0.007656967840735069" />
+                  <Stop color="#1a7799" offset="0.5142085135385288" />
+                  <Stop color="#c9c7c7" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
       <Rectangle fx:id="rec10" arcHeight="5.0" arcWidth="5.0" fill="#86623e" height="40.0" layoutX="150.0" layoutY="465.0" onMouseClicked="#gridClick" onMouseEntered="#gridHover" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Rectangle fx:id="rec11" arcHeight="5.0" arcWidth="5.0" fill="#86623e" height="40.0" layoutX="190.0" layoutY="465.0" onMouseClicked="#gridClick" onMouseEntered="#gridHover" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Rectangle fx:id="rec12" arcHeight="5.0" arcWidth="5.0" fill="#86623e" height="40.0" layoutX="230.0" layoutY="465.0" onMouseClicked="#gridClick" onMouseEntered="#gridHover" stroke="BLACK" strokeType="INSIDE" width="40.0" />
@@ -111,5 +129,25 @@
       <ImageView fx:id="imgS1" fitHeight="150.0" fitWidth="150.0" layoutX="14.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" styleClass="vline1by3" />
       <ImageView fx:id="imgS2" fitHeight="150.0" fitWidth="150.0" layoutX="279.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" />
       <ImageView fx:id="imgS3" fitHeight="150.0" fitWidth="150.0" layoutX="536.0" layoutY="559.0" onMouseClicked="#pieceClick" pickOnBounds="true" preserveRatio="true" rotate="270.0" />
+      <Label layoutX="337.0" layoutY="37.0" prefHeight="19.0" prefWidth="40.0" text="Score:" />
+      <Label fx:id="lblScore" layoutX="371.0" layoutY="37.0" text="0" />
+      <MenuBar layoutX="6.0" layoutY="2.0" opacity="0.7" prefHeight="27.0" prefWidth="685.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#replay" text="Replay" />
+              <MenuItem mnemonicParsing="false" onAction="#goHome" text="Home" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#about" text="Instructions" />
+            </items>
+          </Menu>
+        </menus>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </MenuBar>
    </children>
 </AnchorPane>

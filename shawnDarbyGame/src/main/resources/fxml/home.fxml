@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.HomeController">
    <children>
-      <ImageView fitHeight="181.0" fitWidth="218.0" layoutX="45.0" layoutY="123.0" onMouseClicked="#open2048" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="192.0" fitWidth="239.0" layoutX="317.0" layoutY="118.0" onMouseClicked="#openWoodBlock" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="550.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="580.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.49809526715959823" radius="0.5">
+               <stops>
+                  <Stop color="#4a1fff" />
+                  <Stop color="#4a1fff" offset="0.030627871362940276" />
+                  <Stop color="#3fff1f" offset="0.08640488531376735" />
+                  <Stop color="#ff1f52" offset="0.16414835164835165" />
+                  <Stop color="#1fffab" offset="0.2644230769230769" />
+                  <Stop color="#363333" offset="0.4349157733537519" />
+                  <Stop color="#1f23ff" offset="0.7309532924961714" />
+                  <Stop color="#363232" offset="0.7366812934385677" />
+                  <Stop color="#ff1f53" offset="0.9877488514548239" />
+                  <Stop color="#29e151" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="345.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="192.0" layoutX="44.0" layoutY="88.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
+      <ImageView fitHeight="181.0" fitWidth="227.0" layoutX="49.0" layoutY="93.0" onMouseClicked="#open2048" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../twenty48.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ImageView>
+      <ImageView fitHeight="192.0" fitWidth="239.0" layoutX="350.0" layoutY="87.0" onMouseClicked="#openWoodBlock" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../woodBlockPic.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ImageView>
+      <Label layoutX="69.0" layoutY="12.0" text="Shawn And Darby's Assorted Games" underline="true">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="395.0" layoutY="288.0" text="Wood Block Puzzle" textFill="WHITE" />
+      <Label layoutX="86.0" layoutY="288.0" text="Twenty Fourty Eight" textFill="WHITE" />
+      <Label fx:id="lblMoney" layoutX="527.0" layoutY="14.0" prefHeight="17.0" prefWidth="34.0" text="\$" />
    </children>
 </AnchorPane>
