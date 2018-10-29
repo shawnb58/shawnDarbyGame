@@ -398,8 +398,35 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
 //find score//find money//disable evrything//alert?//lose screen?
         MainApp.credits += (score / 100);
-        lblCredits.setText("$" + MainApp.credits);
-        System.out.println(MainApp.credits);
+        //lblCredits.setText("$" + MainApp.credits);
+        MainApp.pWin = false;
+        MainApp.pMessage = "You now have $" + MainApp.credits;
+        Parent parentWood;
+
+        try {
+            parentWood = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
+            MainApp.pLastScene = new Scene(parentWood);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        Parent parentLose;
+        try {
+            parentLose = FXMLLoader.load(getClass().getResource("/fxml/WinLose.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneLose = new Scene(parentLose);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblCredits).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneLose); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneLose.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {
