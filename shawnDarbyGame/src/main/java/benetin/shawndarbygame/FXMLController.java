@@ -404,15 +404,17 @@ public class FXMLController implements Initializable {//left to do= //figure out
         Parent parentWood;
 
         try {
+            MainApp.showInfo = false;
             parentWood = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
             MainApp.pLastScene = new Scene(parentWood);
+            MainApp.showInfo = true;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
         Parent parentLose;
         try {
-            parentLose = FXMLLoader.load(getClass().getResource("/fxml/WinLose.fxml")); //where FXMLPage2 is the name of the scene
+            parentLose = FXMLLoader.load(getClass().getResource("/fxml/winLose.fxml")); //where FXMLPage2 is the name of the scene
 
             Scene sceneLose = new Scene(parentLose);
 //get reference to the stage 
@@ -796,7 +798,9 @@ public class FXMLController implements Initializable {//left to do= //figure out
         r[9][8] = rec98;
         r[9][9] = rec99;
         reset();
-        showInstructions();
+        if (MainApp.showInfo) {
+            showInstructions();
+        }
 
     }
 }
