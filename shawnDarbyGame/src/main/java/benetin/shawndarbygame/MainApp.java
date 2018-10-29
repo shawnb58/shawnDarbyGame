@@ -17,6 +17,7 @@ public class MainApp extends Application {
     public static boolean pWin = false;//p=public
     public static String pMessage;
     public static Scene pLastScene;
+    public static boolean showInfo=true;
 
 //    public static void lost(boolean win, String message, Scene lastScene) {
 //        pWin = win;

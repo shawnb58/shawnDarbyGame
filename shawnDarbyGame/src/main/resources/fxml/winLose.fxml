@@ -8,8 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/stylesShawn.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller=".WinLoseController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.WinLoseController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="BLACK" strokeType="INSIDE" width="600.0">
          <fill>
@@ -26,7 +25,7 @@
             <Font size="47.0" />
          </font>
       </Label>
-      <Label fx:id="lblMessage" layoutX="253.0" layoutY="142.0" text="Label" textFill="#d81a1b">
+      <Label fx:id="lblMessage" alignment="CENTER" layoutX="61.0" layoutY="149.0" prefHeight="60.0" prefWidth="478.0" text="Label" textFill="#d81a1b">
          <font>
             <Font size="40.0" />
          </font>
