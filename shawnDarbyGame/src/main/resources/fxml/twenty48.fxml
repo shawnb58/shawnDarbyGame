@@ -1,75 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" onKeyPressed="#pressed" prefHeight="700.0" prefWidth="700.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.Twenty48Controller">
    <children>
-      <Label fx:id="lbl12" alignment="CENTER" layoutX="154.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="709.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#000000dc" />
+                  <Stop color="#000000dc" offset="0.007656967840735069" />
+                  <Stop color="#1a7799" offset="0.5142085135385288" />
+                  <Stop color="#c9c7c7" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="lbl12" alignment="CENTER" layoutX="287.0" layoutY="280.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl32" alignment="CENTER" layoutX="354.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl32" alignment="CENTER" layoutX="487.0" layoutY="280.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl33" alignment="CENTER" layoutX="354.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl33" alignment="CENTER" layoutX="487.0" layoutY="180.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl20" alignment="CENTER" layoutX="254.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl20" alignment="CENTER" layoutX="387.0" layoutY="480.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl10" alignment="CENTER" layoutX="154.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl10" alignment="CENTER" layoutX="287.0" layoutY="480.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl21" alignment="CENTER" layoutX="254.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl21" alignment="CENTER" layoutX="387.0" layoutY="380.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl11" alignment="CENTER" layoutX="154.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl11" alignment="CENTER" layoutX="287.0" layoutY="380.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl22" alignment="CENTER" layoutX="254.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl22" alignment="CENTER" layoutX="387.0" layoutY="280.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl23" alignment="CENTER" layoutX="254.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl23" alignment="CENTER" layoutX="387.0" layoutY="180.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl13" alignment="CENTER" layoutX="154.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl13" alignment="CENTER" layoutX="287.0" layoutY="180.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl02" alignment="CENTER" layoutX="54.0" layoutY="202.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl02" alignment="CENTER" layoutX="187.0" layoutY="280.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl01" alignment="CENTER" layoutX="54.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl01" alignment="CENTER" layoutX="187.0" layoutY="380.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl00" alignment="CENTER" layoutX="54.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl00" alignment="CENTER" layoutX="187.0" layoutY="480.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl03" alignment="CENTER" layoutX="54.0" layoutY="102.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl03" alignment="CENTER" layoutX="187.0" layoutY="180.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl30" alignment="CENTER" layoutX="354.0" layoutY="402.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl30" alignment="CENTER" layoutX="487.0" layoutY="480.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lbl31" alignment="CENTER" layoutX="354.0" layoutY="302.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+      <Label fx:id="lbl31" alignment="CENTER" layoutX="487.0" layoutY="380.0" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Label fx:id="lblScore" alignment="CENTER" layoutX="511.0" layoutY="23.0" prefHeight="39.0" prefWidth="100.0" styleClass="lbl5" textAlignment="CENTER" />
+      <Label fx:id="lblScore" alignment="BOTTOM_LEFT" layoutX="514.0" layoutY="49.0" prefHeight="39.0" prefWidth="150.0" styleClass="lbl5" text="score: 0" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <MenuBar layoutY="10.0" opacity="0.7" prefHeight="27.0" prefWidth="685.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#replay" text="Replay" />
+                  <MenuItem mnemonicParsing="false" onAction="#goHome" text="Home" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="Instructions" />
+               </items>
+            </Menu>
+         </menus>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </MenuBar>
    </children>
 </AnchorPane>
