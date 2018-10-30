@@ -9,6 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MainApp extends Application {
 
@@ -17,7 +22,14 @@ public class MainApp extends Application {
     public static boolean pWin = false;//p=public
     public static String pMessage;
     public static Scene pLastScene;
-    public static boolean showInfo=true;
+    public static boolean showInfo = true;
+    MediaPlayer player;
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(190000), ae -> music()));
+
+    public void music() {
+        player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+        player.play();
+    }
 
 //    public static void lost(boolean win, String message, Scene lastScene) {
 //        pWin = win;
@@ -25,7 +37,6 @@ public class MainApp extends Application {
 //        pLastScene = lastScene;
 //        
 //    }
-
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
@@ -36,7 +47,9 @@ public class MainApp extends Application {
         stage.setTitle("Mini Programs");
         stage.setScene(scene);
         stage.show();
-
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        music();
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
