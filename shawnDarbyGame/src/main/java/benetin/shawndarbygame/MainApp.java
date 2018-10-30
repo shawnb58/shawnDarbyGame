@@ -12,8 +12,19 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    public static int credits=0;
+    public static int credits = 0;
     public static boolean gameOver;
+    public static boolean pWin = false;//p=public
+    public static String pMessage;
+    public static Scene pLastScene;
+    public static boolean showInfo=true;
+
+//    public static void lost(boolean win, String message, Scene lastScene) {
+//        pWin = win;
+//        pMessage = message;
+//        pLastScene = lastScene;
+//        
+//    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,7 +36,7 @@ public class MainApp extends Application {
         stage.setTitle("Mini Programs");
         stage.setScene(scene);
         stage.show();
-        
+
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
