@@ -5,16 +5,23 @@
  */
 package benetin.shawndarbygame;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -393,7 +400,7 @@ public class Twenty48Controller implements Initializable {
                 place();
                 return;
             }
-        } 
+        }
         score = 0;
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
@@ -428,13 +435,17 @@ public class Twenty48Controller implements Initializable {
                     l[i][j].setStyle("-fx-background-color:rgb(46,66,244) ");
                 } else if (in[i][j] == 2048) {
                     l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
+
+                    //you win
+                    MainApp.credits+=score;
                 } else {
                     l[i][j].setStyle(null);
                 }
 
             }
         }
-lblScore.setText(""+score);
+
+        lblScore.setText("score: " + score);
         upGo = false;
         downGo = false;
         rightGo = false;
@@ -449,12 +460,9 @@ lblScore.setText(""+score);
         mergeLeftC();
         moveLeftC();
         if (!upGo && !rightGo && !downGo && !leftGo /*&& !endG*/) {
-        //    endG = true;
-            alert.setTitle("You lose");
-            alert.setHeaderText(null);
-            alert.setContentText("sadly you have no more moves");
-            alert.showAndWait();
-            
+            //    lose!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           MainApp.credits+=score;
+
         }
 
     }
@@ -634,6 +642,64 @@ lblScore.setText(""+score);
 
             }
         }
+    }
+@FXML
+    private void about(ActionEvent e) {
+        showInstructions();
+    }
+
+    @FXML
+    private void showInstructions() {
+        alert.setTitle("Instructions");
+        alert.setHeaderText(null);
+        alert.setContentText("1. Press the up, right, down or left key to move all numbers in that direction "
+                + "\n 2. Numbers will merge if they are the same"               
+                + "\n 3. You win if you reach the 2048 tile"
+                + "\n 4. You lose when you cannot move any more");
+        alert.showAndWait();
+    }
+    @FXML
+    private void goHome(ActionEvent e) {
+        Parent parentHome;
+        try {
+            parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneHome = new Scene(parentHome);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblScore).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneHome); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneHome.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void replay(ActionEvent e) {
+        reset();
+    }
+
+    private void reset() {
+        for (int i = 0; i <= 3; i++) {
+            for (int j = 0; j <= 3; j++) {
+                l[i][j].setText("");
+                in[i][j] = 0;
+            }}
+                score = 0;
+                lblScore.setText("");
+                upGo = false;
+                downGo = false;
+                leftGo = false;
+                rightGo = false;
+                endG = false;
+                place();
+            
+        
     }
 
     @Override
