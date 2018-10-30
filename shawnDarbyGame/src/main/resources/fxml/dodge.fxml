@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.DodgeController">
+   <children>
+      <Rectangle fx:id="rec00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec24" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec34" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec02" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec32" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec42" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec03" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec23" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec33" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec43" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec20" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec30" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec40" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec01" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec31" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec41" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Label layoutX="136.0" layoutY="64.0" text="Label" />
+      <Label layoutX="620.0" layoutY="542.0" text="Label" />
+      <Label layoutX="620.0" layoutY="442.0" text="Label" />
+      <Label layoutX="620.0" layoutY="342.0" text="Label" />
+      <Label layoutX="620.0" layoutY="242.0" text="Label" />
+      <Label layoutX="620.0" layoutY="142.0" text="Label" />
+      <Label layoutX="51.0" layoutY="542.0" text="Label" />
+      <Label layoutX="51.0" layoutY="442.0" text="Label" />
+      <Label layoutX="51.0" layoutY="342.0" text="Label" />
+      <Label layoutX="51.0" layoutY="242.0" text="Label" />
+      <Label layoutX="51.0" layoutY="142.0" text="Label" />
+      <Label layoutX="536.0" layoutY="624.0" text="Label" />
+      <Label layoutX="436.0" layoutY="624.0" text="Label" />
+      <Label layoutX="336.0" layoutY="624.0" text="Label" />
+      <Label layoutX="236.0" layoutY="624.0" text="Label" />
+      <Label layoutX="236.0" layoutY="64.0" text="Label" />
+      <Label layoutX="336.0" layoutY="64.0" text="Label" />
+      <Label layoutX="436.0" layoutY="64.0" text="Label" />
+      <Label layoutX="536.0" layoutY="64.0" text="Label" />
+      <Label layoutX="136.0" layoutY="624.0" text="Label" />
+   </children>
+</AnchorPane>
