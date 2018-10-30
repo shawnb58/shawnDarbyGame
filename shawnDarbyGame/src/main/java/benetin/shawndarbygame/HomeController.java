@@ -48,7 +48,25 @@ public class HomeController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+    @FXML
+    private void openDodge(MouseEvent m){
+        Parent dodgeParent;
+        try {
+            dodgeParent = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene dodgeScene = new Scene(dodgeParent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) m.getSource()).getScene().getWindow();
+            
+            stage.hide(); //optional
+            stage.setScene(dodgeScene); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     @FXML
     private void openWoodBlock(MouseEvent m) {
         Parent woodBlockParent;
