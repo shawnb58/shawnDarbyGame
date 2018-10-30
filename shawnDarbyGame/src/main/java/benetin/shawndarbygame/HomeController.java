@@ -12,10 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -27,7 +30,15 @@ public class HomeController implements Initializable {
 
     @FXML
     private Label lblMoney;
-    
+    @FXML
+    private Rectangle recCheat;
+Image cheat=new Image("/okCursor.png");
+    @FXML
+    private void cheat() {
+        MainApp.credits = 999999;
+        lblMoney.setText("$" + MainApp.credits);
+    }
+
     @FXML
     private void open2048(MouseEvent m) {//maybe merge all opening stuff into one method with if statements?
         Parent parent2048;
@@ -37,7 +48,7 @@ public class HomeController implements Initializable {
             Scene scene2048 = new Scene(parent2048);
 //get reference to the stage 
             Stage stage = (Stage) ((Node) m.getSource()).getScene().getWindow();
-            
+
             stage.hide(); //optional
             stage.setScene(scene2048); //puts the new scence in the stage
 
@@ -48,7 +59,27 @@ public class HomeController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+
+    @FXML
+    private void openDodge(MouseEvent m) {
+        Parent dodgeParent;
+        try {
+            dodgeParent = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene dodgeScene = new Scene(dodgeParent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) m.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(dodgeScene); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @FXML
     private void openWoodBlock(MouseEvent m) {
         Parent woodBlockParent;
@@ -58,7 +89,7 @@ public class HomeController implements Initializable {
             Scene woodBlockScene = new Scene(woodBlockParent);
 //get reference to the stage 
             Stage stage = (Stage) ((Node) m.getSource()).getScene().getWindow();
-            
+
             stage.hide(); //optional
             stage.setScene(woodBlockScene); //puts the new scence in the stage
 
@@ -75,7 +106,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblMoney.setText("$" + MainApp.credits);
-        
+      
+        recCheat.setCursor(new ImageCursor (cheat));
     }
-    
+
 }
