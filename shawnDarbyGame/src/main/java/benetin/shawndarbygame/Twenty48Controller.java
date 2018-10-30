@@ -374,6 +374,42 @@ public class Twenty48Controller implements Initializable {
         place();
     }
 
+    private void win() {
+        MainApp.credits += score;
+
+        MainApp.pWin = true;
+        MainApp.pMessage = "You now have $" + MainApp.credits;
+        Parent parent48;
+        MainApp.initialize = false;
+        try {
+
+            parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
+            MainApp.pLastScene = new Scene(parent48);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        MainApp.initialize = true;
+
+        Parent parentLose;
+        try {
+            parentLose = FXMLLoader.load(getClass().getResource("/fxml/winLose.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneLose = new Scene(parentLose);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lbl00).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneLose); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneLose.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void place() {
         int count = 0;
         //check how many spaces are full
@@ -437,7 +473,8 @@ public class Twenty48Controller implements Initializable {
                     l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
 
                     //you win
-                    MainApp.credits+=score;
+                    MainApp.credits += score;
+                    win();
                 } else {
                     l[i][j].setStyle(null);
                 }
@@ -461,8 +498,39 @@ public class Twenty48Controller implements Initializable {
         moveLeftC();
         if (!upGo && !rightGo && !downGo && !leftGo /*&& !endG*/) {
             //    lose!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-           MainApp.credits+=score;
+            MainApp.credits += score;
 
+            MainApp.pWin = false;
+            MainApp.pMessage = "You now have $" + MainApp.credits;
+            Parent parent48;
+            MainApp.initialize = false;
+            try {
+
+                parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
+                MainApp.pLastScene = new Scene(parent48);
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            MainApp.initialize = true;
+
+            Parent parentLose;
+            try {
+                parentLose = FXMLLoader.load(getClass().getResource("/fxml/winLose.fxml")); //where FXMLPage2 is the name of the scene
+
+                Scene sceneLose = new Scene(parentLose);
+//get reference to the stage 
+                Stage stage = (Stage) ((Node) lbl00).getScene().getWindow();
+
+                stage.hide(); //optional
+                stage.setScene(sceneLose); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+                stage.show(); //shows the new page
+                sceneLose.getRoot().requestFocus();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
     }
@@ -643,7 +711,8 @@ public class Twenty48Controller implements Initializable {
             }
         }
     }
-@FXML
+
+    @FXML
     private void about(ActionEvent e) {
         showInstructions();
     }
@@ -653,11 +722,12 @@ public class Twenty48Controller implements Initializable {
         alert.setTitle("Instructions");
         alert.setHeaderText(null);
         alert.setContentText("1. Press the up, right, down or left key to move all numbers in that direction "
-                + "\n 2. Numbers will merge if they are the same"               
+                + "\n 2. Numbers will merge if they are the same"
                 + "\n 3. You win if you reach the 2048 tile"
                 + "\n 4. You lose when you cannot move any more");
         alert.showAndWait();
     }
+
     @FXML
     private void goHome(ActionEvent e) {
         Parent parentHome;
@@ -689,17 +759,17 @@ public class Twenty48Controller implements Initializable {
             for (int j = 0; j <= 3; j++) {
                 l[i][j].setText("");
                 in[i][j] = 0;
-            }}
-                score = 0;
-                lblScore.setText("");
-                upGo = false;
-                downGo = false;
-                leftGo = false;
-                rightGo = false;
-                endG = false;
-                place();
-            
-        
+            }
+        }
+        score = 0;
+        lblScore.setText("");
+        upGo = false;
+        downGo = false;
+        leftGo = false;
+        rightGo = false;
+        endG = false;
+        place();
+
     }
 
     @Override
@@ -720,7 +790,9 @@ public class Twenty48Controller implements Initializable {
         l[3][1] = lbl31;
         l[3][2] = lbl32;
         l[3][3] = lbl33;
+
         place();
+
     }
 
 }

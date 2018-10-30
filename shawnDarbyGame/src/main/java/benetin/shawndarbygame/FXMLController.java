@@ -404,10 +404,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
         Parent parentWood;
 
         try {
-            MainApp.showInfo = false;
+            MainApp.initialize = false;
             parentWood = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
             MainApp.pLastScene = new Scene(parentWood);
-            MainApp.showInfo = true;
+            MainApp.initialize = true;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -798,7 +798,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         r[9][8] = rec98;
         r[9][9] = rec99;
         reset();
-        if (MainApp.showInfo) {
+        if (MainApp.initialize) {
             showInstructions();
         }
 
