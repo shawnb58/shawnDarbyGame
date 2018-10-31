@@ -473,7 +473,7 @@ public class Twenty48Controller implements Initializable {
                     l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
 
                     //you win
-                    MainApp.credits += score;
+                    MainApp.credits += score*MainApp.multiplier;
                     win();
                 } else {
                     l[i][j].setStyle(null);

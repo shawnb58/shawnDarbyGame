@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
@@ -79,7 +80,26 @@ Image cheat=new Image("/okCursor.png");
             ex.printStackTrace();
         }
     }
+@FXML
+private void storeClick(ActionEvent e){
+    Parent storeParent;
+        try {
+            storeParent = FXMLLoader.load(getClass().getResource("/fxml/store.fxml")); //where FXMLPage2 is the name of the scene
 
+            Scene storeScene = new Scene(storeParent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(storeScene); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    
+}
     @FXML
     private void openWoodBlock(MouseEvent m) {
         Parent woodBlockParent;

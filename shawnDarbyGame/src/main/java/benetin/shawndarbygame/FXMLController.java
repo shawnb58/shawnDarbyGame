@@ -397,7 +397,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         MainApp.gameOver = true;
 
 //find score//find money//disable evrything//alert?//lose screen?
-        MainApp.credits += (score / 100);
+        MainApp.credits += (score / 100)*MainApp.multiplier;
         //lblCredits.setText("$" + MainApp.credits);
         MainApp.pWin = false;
         MainApp.pMessage = "You now have $" + MainApp.credits;

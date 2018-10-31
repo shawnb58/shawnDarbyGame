@@ -23,6 +23,7 @@ public class MainApp extends Application {
     public static String pMessage;
     public static Scene pLastScene;
     public static boolean initialize = true; //if false it wont initialize in the games
+    public static int multiplier = 1;
     MediaPlayer player;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(190000), ae -> music()));
 
