@@ -29,17 +29,19 @@ import javafx.stage.Stage;
  * @author shawnb58
  */
 public class StoreController implements Initializable {
-@FXML
-private Label lblCredits;
-@FXML
-private Label lblMultiplier;//show current multiplier
-@FXML
-private ImageView imgMultiply;
-@FXML
-private ImageView imgMusic;
-@FXML
-private ImageView imgQ;//secret item
- @FXML
+
+    @FXML
+    private Label lblCredits;
+    @FXML
+    private Label lblMultiplier;//show current multiplier
+    @FXML
+    private ImageView imgMultiply;
+    @FXML
+    private ImageView imgMusic;
+    @FXML
+    private ImageView imgQ;//secret item
+
+    @FXML
     private void goHome(ActionEvent e) {//homescreen
         Parent parentHome;
         try {
@@ -59,90 +61,87 @@ private ImageView imgQ;//secret item
             ex.printStackTrace();
         }
     }
-@FXML
-private void multiplierClick(MouseEvent m){//add to multiplier
-    if (MainApp.credits>10000 && !imgMultiply.isDisabled()){
-        MainApp.credits-=10000;
-        MainApp.multiplier++;
-        lblCredits.setText(""+MainApp.credits);
-        lblMultiplier.setText(""+MainApp.multiplier);
-        if (MainApp.multiplier==10){
-            imgMultiply.setDisable(true);
+
+    @FXML
+    private void multiplierClick(MouseEvent m) {//add to multiplier
+        if (MainApp.credits > 10000 && !imgMultiply.isDisabled()) {
+            MainApp.credits -= 10000;
+            MainApp.multiplier++;
+            lblCredits.setText("" + MainApp.credits);
+            lblMultiplier.setText("" + MainApp.multiplier);
+            if (MainApp.multiplier == 10) {
+                imgMultiply.setDisable(true);
+            }
         }
     }
-}
-@FXML
-private void qClick(MouseEvent m){  //click secret item (flashy grpahics)
-    if (MainApp.credits>100000){
-        MainApp.credits-=10000;
-        lblCredits.setText(""+MainApp.credits);
-         MainApp.homeFlash=true;
-         imgQ.setDisable(true);
+
+    @FXML
+    private void qClick(MouseEvent m) {  //click secret item (flashy grpahics)
+        if (MainApp.credits > 100000) {
+            MainApp.credits -= 10000;
+            lblCredits.setText("" + MainApp.credits);
+            MainApp.homeFlash = true;
+            imgQ.setDisable(true);
+        }
+
     }
-    
-    
-    
-   
-}
-@FXML
-private void musicClick(MouseEvent m){ //change music
-    if (MainApp.credits>1000){
-        MainApp.credits-=1000;
-        
-        lblCredits.setText(""+MainApp.credits);
-        MainApp.song="cool";//sets cooler song
-    
-        
+
+    @FXML
+    private void musicClick(MouseEvent m) { //change music
+        if (MainApp.credits > 1000) {
+            MainApp.credits -= 1000;
+
+            lblCredits.setText("" + MainApp.credits);
+            MainApp.song = "cool";//sets cooler song
+
             imgMusic.setDisable(true);
-             MainApp.player.stop();
-      if (MainApp.song.equals("cool")){
-          imgMusic.setDisable(true);
-      }
+            MainApp.player.stop();
+            if (MainApp.song.equals("cool")) {
+                imgMusic.setDisable(true);
+            }
             if (MainApp.song.equals("elevator")) {
 
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
-        } else {
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
+
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
+
         }
-       
-        MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
-        MainApp.player.play();
-        
     }
-}
-    
-    
 
     /**
      * Initializes the controller class.
      */
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      lblCredits.setText("$"+MainApp.credits);
-      lblMultiplier.setText(""+MainApp.multiplier);
-      if (MainApp.multiplier==10){//disables images if already been selected (fixes error where sometimes you would be able to select it again after changing scenes)
-          imgMultiply.setDisable(true);
-      }
-       if (MainApp.homeFlash){
-           imgQ.setDisable(true);
-       }
-      
-      if (MainApp.song.equals("cool")){
-          imgMusic.setDisable(true);
-      }
-       MainApp.playing= MainApp.player.getStatus().equals(Status.PLAYING);
-       if (!MainApp.playing){
-               MainApp.player.stop();
+        lblCredits.setText("$" + MainApp.credits);
+        lblMultiplier.setText("" + MainApp.multiplier);
+        if (MainApp.multiplier == 10) {//disables images if already been selected (fixes error where sometimes you would be able to select it again after changing scenes)
+            imgMultiply.setDisable(true);
+        }
+        if (MainApp.homeFlash) {
+            imgQ.setDisable(true);
+        }
+
+        if (MainApp.song.equals("cool")) {
+            imgMusic.setDisable(true);
+        }
+        MainApp.playing = MainApp.player.getStatus().equals(Status.PLAYING);
+        if (!MainApp.playing) {
+            MainApp.player.stop();
             if (MainApp.song.equals("elevator")) {
 
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
-        } else {
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
+
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
         }
-       
-        MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
-        MainApp.player.play();}
-    }    
-    
+    }
+
 }

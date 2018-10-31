@@ -791,7 +791,8 @@ public class Twenty48Controller implements Initializable {
         l[3][0] = lbl30;
         l[3][1] = lbl31;
         l[3][2] = lbl32;
-        l[3][3] = lbl33; place();
+        l[3][3] = lbl33;
+        place();
         MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
         if (!MainApp.playing) {
             MainApp.player.stop();
@@ -804,7 +805,6 @@ public class Twenty48Controller implements Initializable {
 
             MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
             MainApp.player.play();
-           
 
         }
     }
