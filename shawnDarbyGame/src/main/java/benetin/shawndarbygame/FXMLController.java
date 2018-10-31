@@ -26,8 +26,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 //i rotated image views because images are not correct orientation//array is x=rise and y=run,just because
 
-
-public class FXMLController implements Initializable {                        
+public class FXMLController implements Initializable {
 
     Rectangle r[][] = new Rectangle[10][10];//2d array of the rectangles on the grid
     @FXML
@@ -324,7 +323,7 @@ public class FXMLController implements Initializable {
 
             }
         } catch (IndexOutOfBoundsException a) {
-            
+
         }
 
         //other stuff?
@@ -335,7 +334,7 @@ public class FXMLController implements Initializable {
         if (MainApp.gameOver) {
             return;
         }
-        
+
         boolean allowed = false;//if this is not true then they havent selected a spot yet and it shouldnt continue
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -348,7 +347,7 @@ public class FXMLController implements Initializable {
         if (!allowed) {
             return;
         }
-        
+
 //set all places that were selected with the hover
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -365,7 +364,7 @@ public class FXMLController implements Initializable {
         iS.setEffect(null);
         iS.setOpacity(.5);
         iS.setDisable(true);
-        
+
         checkForLines();//getscore
         if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {//if they have used all pieces then give more
             //new pieces method
@@ -800,8 +799,8 @@ public class FXMLController implements Initializable {
         r[9][9] = rec99;
         reset();
         if (MainApp.initialize) {//so that it doesnt show when setting as the last scene visited
-                showInstructions();
-            }
+            showInstructions();
+        }
         MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
         if (!MainApp.playing) {
             MainApp.player.stop();
@@ -814,7 +813,6 @@ public class FXMLController implements Initializable {
 
             MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
             MainApp.player.play();
-            
 
         }
     }

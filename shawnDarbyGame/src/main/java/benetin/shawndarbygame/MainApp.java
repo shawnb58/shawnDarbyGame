@@ -9,9 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -26,12 +23,8 @@ public class MainApp extends Application {
     public static int multiplier = 1;//score multiplier (ca be bought)
     public static String song = "elevator"; //used ot change music
     public static MediaPlayer player;
-   public static boolean playing=false;//if false then no music is playing
-   public static boolean homeFlash = false;//flashing background
-
-   
-   
-
+    public static boolean playing = false;//if false then no music is playing
+    public static boolean homeFlash = false;//flashing background
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -44,8 +37,7 @@ public class MainApp extends Application {
         stage.setTitle("Mini Programs");
         stage.setScene(scene);
         stage.show();
-       
-        
+
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
@@ -59,7 +51,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
+
     }
 
 }
