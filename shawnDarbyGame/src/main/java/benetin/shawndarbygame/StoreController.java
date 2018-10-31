@@ -32,15 +32,15 @@ public class StoreController implements Initializable {
 @FXML
 private Label lblCredits;
 @FXML
-private Label lblMultiplier;
+private Label lblMultiplier;//show current multiplier
 @FXML
 private ImageView imgMultiply;
 @FXML
 private ImageView imgMusic;
 @FXML
-private ImageView imgQ;
+private ImageView imgQ;//secret item
  @FXML
-    private void goHome(ActionEvent e) {
+    private void goHome(ActionEvent e) {//homescreen
         Parent parentHome;
         try {
             parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
@@ -60,7 +60,7 @@ private ImageView imgQ;
         }
     }
 @FXML
-private void multiplierClick(MouseEvent m){
+private void multiplierClick(MouseEvent m){//add to multiplier
     if (MainApp.credits>10000 && !imgMultiply.isDisabled()){
         MainApp.credits-=10000;
         MainApp.multiplier++;
@@ -72,7 +72,7 @@ private void multiplierClick(MouseEvent m){
     }
 }
 @FXML
-private void qClick(MouseEvent m){
+private void qClick(MouseEvent m){  //click secret item (flashy grpahics)
     if (MainApp.credits>100000){
         MainApp.credits-=10000;
         lblCredits.setText(""+MainApp.credits);
@@ -85,7 +85,7 @@ private void qClick(MouseEvent m){
    
 }
 @FXML
-private void musicClick(MouseEvent m){
+private void musicClick(MouseEvent m){ //change music
     if (MainApp.credits>1000){
         MainApp.credits-=1000;
         
@@ -121,7 +121,7 @@ private void musicClick(MouseEvent m){
     public void initialize(URL url, ResourceBundle rb) {
       lblCredits.setText("$"+MainApp.credits);
       lblMultiplier.setText(""+MainApp.multiplier);
-      if (MainApp.multiplier==10){
+      if (MainApp.multiplier==10){//disables images if already been selected (fixes error where sometimes you would be able to select it again after changing scenes)
           imgMultiply.setDisable(true);
       }
        if (MainApp.homeFlash){

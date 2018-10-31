@@ -24,10 +24,10 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-//i rotated image views because images are not correct orientation//array is x=rise and y=run,oops
-//make images transparent background//lose
+//i rotated image views because images are not correct orientation//array is x=rise and y=run,just because
 
-public class FXMLController implements Initializable {//left to do= //figure out images//gridHover//gridClick//setPieces-->images//reset method                         
+
+public class FXMLController implements Initializable {                        
 
     Rectangle r[][] = new Rectangle[10][10];//2d array of the rectangles on the grid
     @FXML
@@ -233,7 +233,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     @FXML
     private Label lblCredits;
     @FXML
-    private Label lblScore;
+    private Label lblScore;//show current score
 
     @FXML
     private ImageView imgS1;//first imageView of selections
@@ -256,10 +256,10 @@ public class FXMLController implements Initializable {//left to do= //figure out
     int score;
     int spot1;
     int spot2;  //spots are used to find the index in the array
-    Alert alert = new Alert(AlertType.INFORMATION);
+    Alert alert = new Alert(AlertType.INFORMATION);//to show instructions
 
     @FXML
-    private void goHome(ActionEvent e) {
+    private void goHome(ActionEvent e) {//go home
         Parent parentHome;
         try {
             parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
@@ -280,7 +280,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     }
 
     @FXML
-    private void replay(ActionEvent e) {
+    private void replay(ActionEvent e) {//to replay
         reset();
     }
 
@@ -291,7 +291,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
             return;
         }
         Rectangle sP = (Rectangle) e.getSource();//starting point
-
+//get rid of past hovered colours
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -324,7 +324,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
             }
         } catch (IndexOutOfBoundsException a) {
-            return;
+            
         }
 
         //other stuff?
@@ -335,8 +335,8 @@ public class FXMLController implements Initializable {//left to do= //figure out
         if (MainApp.gameOver) {
             return;
         }
-        //if this is not true then they havent selected a spot yet and it shouldnt continue
-        boolean allowed = false;
+        
+        boolean allowed = false;//if this is not true then they havent selected a spot yet and it shouldnt continue
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -348,8 +348,8 @@ public class FXMLController implements Initializable {//left to do= //figure out
         if (!allowed) {
             return;
         }
-        allowed = false;
-
+        
+//set all places that were selected with the hover
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (r[i][j].getFill().equals(hoverColour)) {
@@ -359,13 +359,15 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
             }
         }
+        //show score and make it so they cant select that piece again
         lblScore.setText("" + score);
         iS.setId("0");
         iS.setEffect(null);
         iS.setOpacity(.5);
         iS.setDisable(true);
-        checkForLines();
-        if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {
+        
+        checkForLines();//getscore
+        if ((imgS1.getId().equals("0")) && (imgS2.getId().equals("0")) && (imgS3.getId().equals("0"))) {//if they have used all pieces then give more
             //new pieces method
             setPieces();
         }
@@ -373,7 +375,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         piecePick = 0;
         int pick1, pick2, pick3;
 
-        if (!imgS1.getId().equals("0")) {
+        if (!imgS1.getId().equals("0")) {//gets the pieces that can be selected
             pick1 = Integer.parseInt(imgS1.getId());
         } else {                    //if pick1=0 then it's disabled and shouldnt be checked
             pick1 = 0;
@@ -389,31 +391,31 @@ public class FXMLController implements Initializable {//left to do= //figure out
             pick3 = 0;
         }
 
-        if (checkIfCanPlace(pick1, pick2, pick3) == false) {
+        if (checkIfCanPlace(pick1, pick2, pick3) == false) {//if the pieces selected cannot be placed then lose
             lost();
         }
     }
 
-    private void lost() {
+    private void lost() {//lose method
         //losing stuff
         MainApp.gameOver = true;
 
-//find score//find money//disable evrything//alert?//lose screen?
+//find score//find money//disable evrything//lose screen
         MainApp.credits += (score / 100) * MainApp.multiplier;
         //lblCredits.setText("$" + MainApp.credits);
         MainApp.pWin = false;
         MainApp.pMessage = "You now have $" + MainApp.credits;
         Parent parentWood;
 
-        try {
+        try {//if initialize = false then do not show instructions when the fxml is loaded
             MainApp.initialize = false;
             parentWood = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene = new Scene(parentWood);
+            MainApp.pLastScene = new Scene(parentWood);//makes this scene the last scene visited
             MainApp.initialize = true;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
+//open lose screen
         Parent parentLose;
         try {
             parentLose = FXMLLoader.load(getClass().getResource("/fxml/winLose.fxml")); //where FXMLPage2 is the name of the scene
@@ -433,7 +435,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         }
     }
 
-    private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {
+    private boolean checkIfCanPlace(int piecePick1, int piecePick2, int piecePick3) {//checks if the pieces left can be placed
         //if false then they lost
         //checks if possible to make a move
         for (int i = 0; i < 10; i++) {
@@ -514,7 +516,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         return false;
     }
 
-    private void checkForLines() {
+    private void checkForLines() {//adds to score and clear lines
         //reset booleans
         for (int i = 0; i < 10; i++) {
             clearCol[i] = false;
@@ -575,20 +577,17 @@ public class FXMLController implements Initializable {//left to do= //figure out
         if (MainApp.gameOver) {
             return;
         }
-        ColorAdjust colorAdjust = new ColorAdjust();
+        ColorAdjust colorAdjust = new ColorAdjust();//shows it was selected
 
         imgS1.setEffect(null);
         imgS2.setEffect(null);
         imgS3.setEffect(null);
 
         colorAdjust.setBrightness(-0.5);
-        imgS1.setStyle("-fx-background-color: BROWN");//default colour
-        imgS2.setStyle("-fx-background-color: BROWN");//default colour
-        imgS3.setStyle("-fx-background-color: BROWN");//default colour
+
         iS = (ImageView) e.getSource();//imageview selected
         iS.setEffect(colorAdjust);
         piecePick = Integer.parseInt(iS.getId()); //piece that the user picked//use id property on the imageview
-        iS.setStyle("-fx-background-color: BLUE");//shows selection if images are transparent
 
     }
 
@@ -653,7 +652,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     }
 
     @FXML
-    private void reset() {
+    private void reset() {//resets variables and board
         MainApp.gameOver = false;
         score = 0;
         imgS1.setId("null");
@@ -683,7 +682,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     }
 
     @FXML
-    private void showInstructions() {
+    private void showInstructions() {//shows how to play
         alert.setTitle("Instructions");
         alert.setHeaderText(null);
         alert.setContentText("1. Click a piece from the bottom to select it"
@@ -698,7 +697,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MainApp.gameOver = false; //starts in a game
-        lblCredits.setText("$" + MainApp.credits);
+        lblCredits.setText("$" + MainApp.credits);//show money
         r[0][0] = rec00;
         r[0][1] = rec01;
         r[0][2] = rec02;
@@ -800,6 +799,9 @@ public class FXMLController implements Initializable {//left to do= //figure out
         r[9][8] = rec98;
         r[9][9] = rec99;
         reset();
+        if (MainApp.initialize) {//so that it doesnt show when setting as the last scene visited
+                showInstructions();
+            }
         MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
         if (!MainApp.playing) {
             MainApp.player.stop();
@@ -812,9 +814,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
 
             MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
             MainApp.player.play();
-            if (MainApp.initialize) {
-                showInstructions();
-            }
+            
 
         }
     }

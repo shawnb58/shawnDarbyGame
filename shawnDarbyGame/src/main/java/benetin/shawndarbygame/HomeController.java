@@ -36,15 +36,15 @@ import javafx.animation.Timeline;
 public class HomeController implements Initializable {
 
     @FXML
-    private Label lblMoney;
+    private Label lblMoney;//show money
     @FXML
-    private Rectangle recCheat;
+    private Rectangle recCheat;//when clicked it gives a bunch of money
     @FXML
     private Rectangle recFlash;//rec that can flash
-    Image cheat = new Image("/okCursor.png");
+    Image cheat = new Image("/okCursor.png");//cursor for when hovering over cheat image
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), ae -> flashHome()));//flashing background
 
-    private void flashHome() {
+    private void flashHome() { //flashing background
         if (recFlash.isVisible()) {
             recFlash.setVisible(false);
         } else {
@@ -59,7 +59,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void open2048(MouseEvent m) {//maybe merge all opening stuff into one method with if statements?
+    private void open2048(MouseEvent m) {//open 2048 game
         Parent parent2048;
         try {
             parent2048 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
@@ -80,7 +80,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void openDodge(MouseEvent m) {
+    private void openDodge(MouseEvent m) {//open dodge game
         Parent dodgeParent;
         try {
             dodgeParent = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
@@ -100,7 +100,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void storeClick(ActionEvent e) {
+    private void storeClick(ActionEvent e) {//open store
         Parent storeParent;
         try {
             storeParent = FXMLLoader.load(getClass().getResource("/fxml/store.fxml")); //where FXMLPage2 is the name of the scene
@@ -121,7 +121,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void openWoodBlock(MouseEvent m) {
+    private void openWoodBlock(MouseEvent m) {//open wood game
         Parent woodBlockParent;
         try {
             woodBlockParent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
@@ -147,9 +147,9 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lblMoney.setText("$" + MainApp.credits);
 
-        recCheat.setCursor(new ImageCursor(cheat));
+        recCheat.setCursor(new ImageCursor(cheat));//for hovering over cheat rec
         MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
-        if (!MainApp.playing) {
+        if (!MainApp.playing) {//checks if there's music playing and if not then play music
             MainApp.player.stop();
             if (MainApp.song.equals("elevator")) {
 
@@ -161,7 +161,7 @@ public class HomeController implements Initializable {
             MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
             MainApp.player.play();
         }
-        if (MainApp.homeFlash) {
+        if (MainApp.homeFlash) {//flashy graphics timeline
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
             timeline.play();

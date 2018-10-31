@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -31,6 +32,9 @@
          <image>
             <Image url="@../money%20sign.jpg" />
          </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
       <Label layoutX="23.0" layoutY="149.0" prefHeight="80.0" prefWidth="120.0" text="Score multiplier&#10;Costs $10 000&#10;*Up to x10*&#10;Current Multiplier:&#10;" />
       <Label fx:id="lblMultiplier" layoutX="122.0" layoutY="209.0" prefHeight="19.0" prefWidth="21.0" text="1" />
@@ -51,13 +55,19 @@
          <image>
             <Image url="@../music%20note.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
       <Label layoutX="263.0" layoutY="149.0" prefHeight="37.0" prefWidth="102.0" text="Change The Music&#10;Costs $1000" />
-      <ImageView fx:id="imgQ" fitHeight="80.0" fitWidth="80.0" layoutX="172.0" layoutY="197.0" onMouseClicked="#qClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgQ" fitHeight="80.0" fitWidth="80.0" layoutX="172.0" layoutY="174.0" onMouseClicked="#qClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../question.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
-      <Label layoutX="161.0" layoutY="277.0" prefHeight="37.0" prefWidth="102.0" text="         Mystery &#10;    Costs $100000" />
+      <Label layoutX="161.0" layoutY="262.0" prefHeight="59.0" prefWidth="102.0" text="         Mystery &#10;  Seizure Warning&#10;    Costs $100000" />
    </children>
 </AnchorPane>
