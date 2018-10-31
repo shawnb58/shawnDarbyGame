@@ -23,22 +23,18 @@ public class MainApp extends Application {
     public static String pMessage;
     public static Scene pLastScene;
     public static boolean initialize = true; //if false it wont initialize in the games
-    MediaPlayer player;
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(190000), ae -> music()));
+    public static int multiplier = 1;
+    public static String song = "elevator";
+    public static MediaPlayer player;
+   public static boolean playing=false;
 
-    public void music() {
-        player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
-        player.play();
-    }
+   
+   
 
-//    public static void lost(boolean win, String message, Scene lastScene) {
-//        pWin = win;
-//        pMessage = message;
-//        pLastScene = lastScene;
-//        
-//    }
+
     @Override
     public void start(Stage stage) throws Exception {
+        MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
 
         Scene scene = new Scene(root);
@@ -47,9 +43,8 @@ public class MainApp extends Application {
         stage.setTitle("Mini Programs");
         stage.setScene(scene);
         stage.show();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-        music();
+       
+        
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
@@ -63,6 +58,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
     }
 
 }

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
@@ -18,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -79,7 +82,26 @@ Image cheat=new Image("/okCursor.png");
             ex.printStackTrace();
         }
     }
+@FXML
+private void storeClick(ActionEvent e){
+    Parent storeParent;
+        try {
+            storeParent = FXMLLoader.load(getClass().getResource("/fxml/store.fxml")); //where FXMLPage2 is the name of the scene
 
+            Scene storeScene = new Scene(storeParent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(storeScene); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    
+}
     @FXML
     private void openWoodBlock(MouseEvent m) {
         Parent woodBlockParent;
@@ -108,6 +130,17 @@ Image cheat=new Image("/okCursor.png");
         lblMoney.setText("$" + MainApp.credits);
       
         recCheat.setCursor(new ImageCursor (cheat));
-    }
+       MainApp.playing= MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+       if (!MainApp.playing){ MainApp.player.stop();
+         if (MainApp.song.equals("elevator")) {
 
+            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+        } else {
+            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+        }
+       
+        MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+        MainApp.player.play();
+    }
+    }
 }

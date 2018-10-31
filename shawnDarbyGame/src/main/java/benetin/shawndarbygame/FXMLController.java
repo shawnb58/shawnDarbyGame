@@ -21,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 //i rotated image views because images are not correct orientation//array is x=rise and y=run,oops
 //make images transparent background//lose
@@ -397,7 +399,7 @@ public class FXMLController implements Initializable {//left to do= //figure out
         MainApp.gameOver = true;
 
 //find score//find money//disable evrything//alert?//lose screen?
-        MainApp.credits += (score / 100);
+        MainApp.credits += (score / 100) * MainApp.multiplier;
         //lblCredits.setText("$" + MainApp.credits);
         MainApp.pWin = false;
         MainApp.pMessage = "You now have $" + MainApp.credits;
@@ -798,9 +800,22 @@ public class FXMLController implements Initializable {//left to do= //figure out
         r[9][8] = rec98;
         r[9][9] = rec99;
         reset();
-        if (MainApp.initialize) {
-            showInstructions();
-        }
+        MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+        if (!MainApp.playing) {
+            MainApp.player.stop();
+            if (MainApp.song.equals("elevator")) {
 
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
+
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
+            if (MainApp.initialize) {
+                showInstructions();
+            }
+
+        }
     }
 }
