@@ -27,16 +27,16 @@ import javafx.stage.Stage;
 public class WinLoseController implements Initializable {
 
     @FXML
-    private Label lblWinLose;
+    private Label lblWinLose;//shows if won or lost
     @FXML
-    private Label lblMessage;
+    private Label lblMessage;//shows how much money they currently have
     @FXML
-    private Button btnHome;
+    private Button btnHome;//go to homescreen
     @FXML
-    private Button btnReset;
+    private Button btnReset;//play last game again
 
     @FXML
-    private void goHome() {
+    private void goHome() {//go home
         Parent parentHome;
         try {
             parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
@@ -56,7 +56,7 @@ public class WinLoseController implements Initializable {
         }
     }
  @FXML
-    private void playAgain() {
+    private void playAgain() {//play last game again
         Stage stage = (Stage) ((Node) lblWinLose).getScene().getWindow();
         stage.setScene(MainApp.pLastScene);
         MainApp.pLastScene.getRoot().requestFocus();
@@ -66,6 +66,7 @@ public class WinLoseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //show corresponding messages
         if (MainApp.pWin) {
             lblWinLose.setText("YOU WIN");
             lblMessage.setText(MainApp.pMessage);

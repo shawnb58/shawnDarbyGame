@@ -18,15 +18,16 @@ import javafx.scene.media.MediaPlayer;
 public class MainApp extends Application {
 
     public static int credits = 0;
-    public static boolean gameOver;
-    public static boolean pWin = false;//p=public
-    public static String pMessage;
-    public static Scene pLastScene;
+    public static boolean gameOver;//to check if user is in the middle of a game
+    public static boolean pWin = false;//p=public//if they won or lost
+    public static String pMessage;//message for win/Lose  
+    public static Scene pLastScene;//last scene visited (to play agin)
     public static boolean initialize = true; //if false it wont initialize in the games
-    public static int multiplier = 1;
-    public static String song = "elevator";
+    public static int multiplier = 1;//score multiplier (ca be bought)
+    public static String song = "elevator"; //used ot change music
     public static MediaPlayer player;
-   public static boolean playing=false;
+   public static boolean playing=false;//if false then no music is playing
+   public static boolean homeFlash = false;//flashing background
 
    
    

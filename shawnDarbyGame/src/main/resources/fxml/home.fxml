@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="580.0" stylesheets="@../styles/stylesShawn.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.HomeController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="550.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="580.0">
+      <Rectangle fx:id="recFlash" arcHeight="5.0" arcWidth="5.0" height="550.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="580.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.49809526715959823" radius="0.5">
                <stops>
