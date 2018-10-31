@@ -27,6 +27,7 @@ public class MainApp extends Application {
     public static String song = "elevator";
     public static MediaPlayer player;
    public static boolean playing=false;
+   public static boolean homeFlash = false;//flashing background
 
    
    

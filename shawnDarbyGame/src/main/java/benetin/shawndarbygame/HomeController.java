@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
@@ -23,6 +24,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 
 /**
  * FXML Controller class
@@ -35,7 +39,19 @@ public class HomeController implements Initializable {
     private Label lblMoney;
     @FXML
     private Rectangle recCheat;
-Image cheat=new Image("/okCursor.png");
+    @FXML
+    private Rectangle recFlash;//rec that can flash
+    Image cheat = new Image("/okCursor.png");
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), ae -> flashHome()));//flashing background
+
+    private void flashHome() {
+        if (recFlash.isVisible()) {
+            recFlash.setVisible(false);
+        } else {
+            recFlash.setVisible(true);
+        }
+    }
+
     @FXML
     private void cheat() {
         MainApp.credits = 999999;
@@ -82,9 +98,10 @@ Image cheat=new Image("/okCursor.png");
             ex.printStackTrace();
         }
     }
-@FXML
-private void storeClick(ActionEvent e){
-    Parent storeParent;
+
+    @FXML
+    private void storeClick(ActionEvent e) {
+        Parent storeParent;
         try {
             storeParent = FXMLLoader.load(getClass().getResource("/fxml/store.fxml")); //where FXMLPage2 is the name of the scene
 
@@ -100,8 +117,9 @@ private void storeClick(ActionEvent e){
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    
-}
+
+    }
+
     @FXML
     private void openWoodBlock(MouseEvent m) {
         Parent woodBlockParent;
@@ -128,19 +146,25 @@ private void storeClick(ActionEvent e){
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblMoney.setText("$" + MainApp.credits);
-      
-        recCheat.setCursor(new ImageCursor (cheat));
-       MainApp.playing= MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
-       if (!MainApp.playing){ MainApp.player.stop();
-         if (MainApp.song.equals("elevator")) {
 
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
-        } else {
-            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+        recCheat.setCursor(new ImageCursor(cheat));
+        MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+        if (!MainApp.playing) {
+            MainApp.player.stop();
+            if (MainApp.song.equals("elevator")) {
+
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
+
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
         }
-       
-        MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
-        MainApp.player.play();
-    }
+        if (MainApp.homeFlash) {
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+            timeline.play();
+        }
     }
 }

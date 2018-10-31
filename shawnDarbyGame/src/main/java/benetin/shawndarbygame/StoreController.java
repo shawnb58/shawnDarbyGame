@@ -37,6 +37,8 @@ private Label lblMultiplier;
 private ImageView imgMultiply;
 @FXML
 private ImageView imgMusic;
+@FXML
+private ImageView imgQ;
  @FXML
     private void goHome(ActionEvent e) {
         Parent parentHome;
@@ -68,6 +70,19 @@ private void multiplierClick(MouseEvent m){
             imgMultiply.setDisable(true);
         }
     }
+}
+@FXML
+private void qClick(MouseEvent m){
+    if (MainApp.credits>100000){
+        MainApp.credits-=10000;
+        lblCredits.setText(""+MainApp.credits);
+         MainApp.homeFlash=true;
+         imgQ.setDisable(true);
+    }
+    
+    
+    
+   
 }
 @FXML
 private void musicClick(MouseEvent m){
@@ -109,7 +124,9 @@ private void musicClick(MouseEvent m){
       if (MainApp.multiplier==10){
           imgMultiply.setDisable(true);
       }
-       
+       if (MainApp.homeFlash){
+           imgQ.setDisable(true);
+       }
       
       if (MainApp.song.equals("cool")){
           imgMusic.setDisable(true);
