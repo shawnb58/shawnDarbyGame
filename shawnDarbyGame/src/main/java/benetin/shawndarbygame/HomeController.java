@@ -19,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -128,6 +130,17 @@ private void storeClick(ActionEvent e){
         lblMoney.setText("$" + MainApp.credits);
       
         recCheat.setCursor(new ImageCursor (cheat));
-    }
+       MainApp.playing= MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+       if (!MainApp.playing){ MainApp.player.stop();
+         if (MainApp.song.equals("elevator")) {
 
+            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+        } else {
+            MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+        }
+       
+        MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+        MainApp.player.play();
+    }
+    }
 }

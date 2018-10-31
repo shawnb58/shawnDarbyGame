@@ -32,8 +32,8 @@
             <Image url="@../money%20sign.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="23.0" layoutY="149.0" prefHeight="80.0" prefWidth="120.0" text="Score multiplier&#10;Cost of $10 000&#10;*Up to x10*&#10;Current Multiplier:&#10;" />
-      <Label fx:id="lblMultiplier" layoutX="122.0" layoutY="210.0" prefHeight="19.0" prefWidth="21.0" text="1" />
+      <Label layoutX="23.0" layoutY="149.0" prefHeight="80.0" prefWidth="120.0" text="Score multiplier&#10;Costs $10 000&#10;*Up to x10*&#10;Current Multiplier:&#10;" />
+      <Label fx:id="lblMultiplier" layoutX="122.0" layoutY="209.0" prefHeight="19.0" prefWidth="21.0" text="1" />
       <MenuBar layoutX="-2.0" layoutY="1.0" opacity="0.7" prefHeight="27.0" prefWidth="446.0">
          <menus>
             <Menu mnemonicParsing="false" text="File">
@@ -46,5 +46,12 @@
             <InnerShadow />
          </effect>
       </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272828" height="80.0" layoutX="274.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <ImageView fx:id="imgMusic" fitHeight="80.0" fitWidth="89.0" layoutX="280.0" layoutY="60.0" onMouseClicked="#musicClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../music%20note.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="263.0" layoutY="149.0" prefHeight="37.0" prefWidth="102.0" text="Change The Music&#10;Costs $1000" />
    </children>
 </AnchorPane>

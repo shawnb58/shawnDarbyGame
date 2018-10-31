@@ -21,6 +21,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -473,7 +475,7 @@ public class Twenty48Controller implements Initializable {
                     l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
 
                     //you win
-                    MainApp.credits += score*MainApp.multiplier;
+                    MainApp.credits += score * MainApp.multiplier;
                     win();
                 } else {
                     l[i][j].setStyle(null);
@@ -790,9 +792,21 @@ public class Twenty48Controller implements Initializable {
         l[3][1] = lbl31;
         l[3][2] = lbl32;
         l[3][3] = lbl33;
+        MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+        if (!MainApp.playing) {
+            MainApp.player.stop();
+            if (MainApp.song.equals("elevator")) {
 
-        place();
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
 
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
+            place();
+
+        }
     }
 
 }
