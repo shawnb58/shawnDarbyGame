@@ -94,6 +94,7 @@ public class HomeController implements Initializable {
 
 //stage.setTitle("Page 2"); //changes the title
             stage.show(); //shows the new page
+            dodgeScene.getRoot().requestFocus();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

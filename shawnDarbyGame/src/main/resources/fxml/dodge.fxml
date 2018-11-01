@@ -3,53 +3,114 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.DodgeController">
+<AnchorPane id="AnchorPane" onKeyPressed="#key" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benetin.shawndarbygame.DodgeController">
    <children>
-      <Rectangle fx:id="rec00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec24" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec34" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec02" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec32" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec42" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec03" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec23" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec33" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec43" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec20" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec30" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec40" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec01" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="300.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec31" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Rectangle fx:id="rec41" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="500.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Label layoutX="136.0" layoutY="64.0" text="Label" />
-      <Label layoutX="620.0" layoutY="542.0" text="Label" />
-      <Label layoutX="620.0" layoutY="442.0" text="Label" />
-      <Label layoutX="620.0" layoutY="342.0" text="Label" />
-      <Label layoutX="620.0" layoutY="242.0" text="Label" />
-      <Label layoutX="620.0" layoutY="142.0" text="Label" />
-      <Label layoutX="51.0" layoutY="542.0" text="Label" />
-      <Label layoutX="51.0" layoutY="442.0" text="Label" />
-      <Label layoutX="51.0" layoutY="342.0" text="Label" />
-      <Label layoutX="51.0" layoutY="242.0" text="Label" />
-      <Label layoutX="51.0" layoutY="142.0" text="Label" />
-      <Label layoutX="536.0" layoutY="624.0" text="Label" />
-      <Label layoutX="436.0" layoutY="624.0" text="Label" />
-      <Label layoutX="336.0" layoutY="624.0" text="Label" />
-      <Label layoutX="236.0" layoutY="624.0" text="Label" />
-      <Label layoutX="236.0" layoutY="64.0" text="Label" />
-      <Label layoutX="336.0" layoutY="64.0" text="Label" />
-      <Label layoutX="436.0" layoutY="64.0" text="Label" />
-      <Label layoutX="536.0" layoutY="64.0" text="Label" />
-      <Label layoutX="136.0" layoutY="624.0" text="Label" />
+      <Rectangle fx:id="rec04" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec14" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="200.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec24" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec34" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec44" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec02" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="100.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec12" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="200.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec22" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec32" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec42" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec03" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="100.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec13" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec23" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec33" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec43" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec00" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="100.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec10" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="200.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec20" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec30" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec40" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec01" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="100.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec11" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="200.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec21" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec31" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Rectangle fx:id="rec41" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Label fx:id="lblT0" ellipsisString="!" layoutX="136.0" layoutY="64.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblR0" ellipsisString="!" layoutX="620.0" layoutY="542.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblR1" ellipsisString="!" layoutX="620.0" layoutY="442.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblR2" ellipsisString="!" layoutX="620.0" layoutY="342.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblR3" ellipsisString="!" layoutX="620.0" layoutY="242.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblR4" ellipsisString="!" layoutX="620.0" layoutY="142.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblL0" ellipsisString="!" layoutX="51.0" layoutY="542.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblL1" ellipsisString="!" layoutX="51.0" layoutY="442.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblL2" ellipsisString="!" layoutX="51.0" layoutY="342.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblL3" ellipsisString="!" layoutX="51.0" layoutY="242.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblL4" ellipsisString="!" layoutX="51.0" layoutY="142.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblB4" ellipsisString="!" layoutX="536.0" layoutY="624.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblB3" ellipsisString="!" layoutX="436.0" layoutY="624.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblB2" ellipsisString="!" layoutX="336.0" layoutY="624.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblB1" ellipsisString="!" layoutX="236.0" layoutY="624.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblT1" ellipsisString="!" layoutX="236.0" layoutY="64.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblT2" ellipsisString="!" layoutX="336.0" layoutY="64.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblT3" ellipsisString="!" layoutX="436.0" layoutY="64.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblT4" ellipsisString="!" layoutX="536.0" layoutY="64.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
+      <Label fx:id="lblB0" ellipsisString="!" layoutX="136.0" layoutY="624.0">
+         <font>
+            <Font name="Elephant Italic" size="28.0" />
+         </font></Label>
    </children>
 </AnchorPane>
