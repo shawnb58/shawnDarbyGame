@@ -13,7 +13,11 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -116,13 +120,14 @@ public class DodgeController implements Initializable {
     @FXML
     private Label lblL4;
 
+    Image man = new Image(getClass().getResource("/stickman.png").toString());
     Rectangle r[][] = new Rectangle[5][5];
     int UD[] = new int[5];
     int LR[] = new int[5];
-
+    ImagePattern m = new ImagePattern(man);
     Label topBottom[][] = new Label[5][2];
     Label sides[][] = new Label[5][2];
-
+int score=0;
     int rNumUD; //4
     int rNumLR; //4
 
@@ -130,35 +135,84 @@ public class DodgeController implements Initializable {
     int rSide;  //2 
     int rotation = 1;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer()));
+    int ii;
+    int jj;
 
-    
-    private void randomPick() {
+    @FXML
+    private void key(KeyEvent ke) {
 
-        rNumUD = ThreadLocalRandom.current().nextInt(4);
-        for (int i = 0; i <= rNumUD; i++) {
-            pickUD(i);
-           
-
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 4; j++) {
+                if (r[i][j].getFill().equals(m)) {
+                    ii = i;
+                    jj = j;
+                }
+            }
         }
-
-        rNumLR = ThreadLocalRandom.current().nextInt(4);
-        for (int i = 0; i <= rNumLR; i++) {
-            pickLR(i);
-           
-
+        if (ke.getCode() == KeyCode.UP) {
+            try {
+                if (r[ii][jj + 1].getFill().equals(Color.RED)) {
+                    lose();
+                } else {
+                    r[ii][jj + 1].setFill(m);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                }
+            } catch (Exception e) {
+            }
+        }
+        if (ke.getCode() == KeyCode.RIGHT) {
+            try {
+                if (r[ii + 1][jj].getFill().equals(Color.RED)) {
+                    lose();
+                } else {
+                    r[ii + 1][jj].setFill(m);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                }
+            } catch (Exception e) {
+            }
+        }
+        if (ke.getCode() == KeyCode.DOWN) {
+            try {
+                if (r[ii][jj - 1].getFill().equals(Color.RED)) {
+                    lose();
+                } else {
+                    r[ii][jj - 1].setFill(m);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                }
+            } catch (Exception e) {
+            }
+        }
+        if (ke.getCode() == KeyCode.LEFT) {
+            try {
+                if (r[ii - 1][jj].getFill().equals(Color.RED)) {
+                    lose();
+                } else {
+                    r[ii - 1][jj].setFill(m);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                }
+            } catch (Exception e) {
+            }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-private void pickUD(int i) {
+
+    private void randomPick() {
+
+        rNumUD = ThreadLocalRandom.current().nextInt(3);
+        for (int i = 0; i <= rNumUD; i++) {
+            pickUD(i);
+
+        }
+
+        rNumLR = ThreadLocalRandom.current().nextInt(3);
+        for (int i = 0; i <= rNumLR; i++) {
+            pickLR(i);
+
+        }
+        System.out.println("n of vert" + rNumUD);
+        System.out.println("n of hor" + rNumLR);
+    }
+
+    private void pickUD(int i) {
         UD[i] = ThreadLocalRandom.current().nextInt(5);
         rePickUD(i);
     }
@@ -179,14 +233,13 @@ private void pickUD(int i) {
         }
         if (i != 3 && UD[i] == UD[3]) {
             pickUD(i);
-       return;
+            return;
         }
         if (i != 4 && UD[i] == UD[4]) {
             pickUD(i);
-       return;
+            return;
         }
 
-       
     }
 
     private void pickLR(int i) {
@@ -211,12 +264,11 @@ private void pickUD(int i) {
         if (i != 3 && LR[i] == LR[3]) {
             pickLR(i);
             return;
-      
+
         }
-         if (i != 4 && LR[i] == LR[4]) {
+        if (i != 4 && LR[i] == LR[4]) {
             pickLR(i);
-            return;
-      
+
         }
     }
 
@@ -227,7 +279,7 @@ private void pickUD(int i) {
         }
         for (int i = 0; i <= rNumLR; i++) {
             rSide = ThreadLocalRandom.current().nextInt(2);
-            topBottom[LR[i]][rSide].setText("!");
+            sides[LR[i]][rSide].setText("!");
         }
 
     }
@@ -236,14 +288,23 @@ private void pickUD(int i) {
 
         for (int i = 0; i <= rNumUD; i++) {
             for (int j = 0; j <= 4; j++) {
-                r[UD[i]][j].setFill(Color.RED);
-System.out.println(UD[i]);
+                if (r[UD[i]][j].getFill().equals(m)) {
+                    lose();
+                    return;
+                } else {
+                    r[UD[i]][j].setFill(Color.RED);
+
+                }
             }
         }
-        for (int j = 0; j <= rNumLR;j ++) {
+        for (int j = 0; j <= rNumLR; j++) {
             for (int i = 0; i <= 4; i++) {
-                r[i][LR[j]].setFill(Color.RED);
-                System.out.println("                              "+LR[j]);
+                if (r[i][LR[j]].getFill().equals(m)) {
+                    lose();
+                    return;
+                } else {
+                    r[i][LR[j]].setFill(Color.RED);
+                }
             }
         }
         for (int i = 0; i <= 4; i++) {
@@ -255,30 +316,48 @@ System.out.println(UD[i]);
     }
 
     private void timer() {
+        
         if (rotation == 1) {
+            for (int i = 0; i <= 4; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    if (r[i][j].getFill().equals(m)) {
+                        ii = i;
+                        jj = j;
+                    }
+                }
+            }
             for (int i = 0; i <= 4; i++) {
                 for (int j = 0; j <= 4; j++) {
                     r[i][j].setFill(Color.TRANSPARENT);
                 }
             }
+            r[ii][jj].setFill(m);
 
-            rotation = 2;
+
             randomPick();
-
+            rotation = 2;
+            return;
         }
 
-        if (rotation
-                == 2) {
-            rotation = 3;
+        if (rotation == 2) {
+
             warning();
+            rotation = 3;
+            return;
         }
 
-        if (rotation
-                == 3) {
-            rotation = 1;
+        if (rotation == 3) {
+
             execute();
+            rotation = 1;
+            score+=100;
         }
 
+    }
+
+    private void lose() {
+        System.out.println("lose");
+        timeline.stop();
     }
 
     @Override
@@ -373,6 +452,8 @@ System.out.println(UD[i]);
         sides[3][0] = lblL3;
 
         sides[4][0] = lblL4;
+        r[2][2].setFill(m);
+
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
