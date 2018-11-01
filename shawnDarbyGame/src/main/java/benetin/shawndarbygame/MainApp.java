@@ -34,7 +34,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styles.css");
 
-        stage.setTitle("Mini Programs");
+        stage.setTitle("Games Galore");
         stage.setScene(scene);
         stage.show();
 
