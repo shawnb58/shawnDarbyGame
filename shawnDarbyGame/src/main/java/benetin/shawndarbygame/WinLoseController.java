@@ -57,9 +57,30 @@ public class WinLoseController implements Initializable {
     }
  @FXML
     private void playAgain() {//play last game again
-        Stage stage = (Stage) ((Node) lblWinLose).getScene().getWindow();
-        stage.setScene(MainApp.pLastScene);
-        MainApp.pLastScene.getRoot().requestFocus();
+Parent parentLast;
+        try {
+            parentLast = FXMLLoader.load(getClass().getResource(MainApp.pLastScene)); //where FXMLPage2 is the name of the scene
+
+            Scene sceneLast = new Scene(parentLast);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblWinLose).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneLast); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneLast.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }        
+        
+        
+        MainApp.initialize=true;
+        
+//        Stage stage = (Stage) ((Node) lblWinLose).getScene().getWindow();
+//        stage.setScene(scene);
+//        MainApp.pLastScene.getRoot().requestFocus();
     }
     /**
      * Initializes the controller class.

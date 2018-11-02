@@ -5,13 +5,21 @@
  */
 package benetin.shawndarbygame;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -19,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -119,15 +128,20 @@ public class DodgeController implements Initializable {
     private Label lblL3;
     @FXML
     private Label lblL4;
-
+    @FXML
+    private Label lblScore;
     Image man = new Image(getClass().getResource("/stickman.png").toString());
+    Image rMan = new Image(getClass().getResource("/stickmanRed.png").toString());
+
     Rectangle r[][] = new Rectangle[5][5];
     int UD[] = new int[5];
     int LR[] = new int[5];
     ImagePattern m = new ImagePattern(man);
+    ImagePattern red = new ImagePattern(rMan);
+
     Label topBottom[][] = new Label[5][2];
     Label sides[][] = new Label[5][2];
-int score=0;
+    int score = 0;
     int rNumUD; //4
     int rNumLR; //4
 
@@ -135,12 +149,19 @@ int score=0;
     int rSide;  //2 
     int rotation = 1;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer()));
+        Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> death()));
+
     int ii;
     int jj;
+    boolean UDZero = true;
+    boolean LRZero = true;
+            boolean lost;
+
+    Alert alert = new Alert(AlertType.INFORMATION);
 
     @FXML
     private void key(KeyEvent ke) {
-
+if (!lost){
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[i][j].getFill().equals(m)) {
@@ -152,7 +173,11 @@ int score=0;
         if (ke.getCode() == KeyCode.UP) {
             try {
                 if (r[ii][jj + 1].getFill().equals(Color.RED)) {
+                    r[ii][jj + 1].setFill(red);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
+
                 } else {
                     r[ii][jj + 1].setFill(m);
                     r[ii][jj].setFill(Color.TRANSPARENT);
@@ -163,6 +188,9 @@ int score=0;
         if (ke.getCode() == KeyCode.RIGHT) {
             try {
                 if (r[ii + 1][jj].getFill().equals(Color.RED)) {
+                    r[ii][jj + 1].setFill(red);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
                 } else {
                     r[ii + 1][jj].setFill(m);
@@ -174,6 +202,8 @@ int score=0;
         if (ke.getCode() == KeyCode.DOWN) {
             try {
                 if (r[ii][jj - 1].getFill().equals(Color.RED)) {
+                    r[ii][jj + 1].setFill(red);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
                     lose();
                 } else {
                     r[ii][jj - 1].setFill(m);
@@ -184,7 +214,11 @@ int score=0;
         }
         if (ke.getCode() == KeyCode.LEFT) {
             try {
+
                 if (r[ii - 1][jj].getFill().equals(Color.RED)) {
+                    r[ii][jj + 1].setFill(red);
+                    r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
                 } else {
                     r[ii - 1][jj].setFill(m);
@@ -194,15 +228,15 @@ int score=0;
             }
         }
     }
-
+    }
     private void randomPick() {
-
+        UDZero = false;
         rNumUD = ThreadLocalRandom.current().nextInt(3);
         for (int i = 0; i <= rNumUD; i++) {
             pickUD(i);
 
         }
-
+        LRZero = false;
         rNumLR = ThreadLocalRandom.current().nextInt(3);
         for (int i = 0; i <= rNumLR; i++) {
             pickLR(i);
@@ -214,32 +248,40 @@ int score=0;
 
     private void pickUD(int i) {
         UD[i] = ThreadLocalRandom.current().nextInt(5);
+        System.out.println(UD[i]);
         rePickUD(i);
     }
 
     private void rePickUD(int i) {
 
-        if (i != 0 && UD[i] == UD[0]) {
-            pickUD(i);
-            return;
+        if (UD[i] == 0) {
+            if (!UDZero) {
+                UDZero = true;
+            } else {
+                pickUD(i);
+            }
+        } else {
+            if (i != 0 && UD[i] == UD[0]) {
+                pickUD(i);
+                return;
+            }
+            if (i != 1 && UD[i] == UD[1]) {
+                pickUD(i);
+                return;
+            }
+            if (i != 2 && UD[i] == UD[2]) {
+                pickUD(i);
+                return;
+            }
+            if (i != 3 && UD[i] == UD[3]) {
+                pickUD(i);
+                return;
+            }
+            if (i != 4 && UD[i] == UD[4]) {
+                pickUD(i);
+                return;
+            }
         }
-        if (i != 1 && UD[i] == UD[1]) {
-            pickUD(i);
-            return;
-        }
-        if (i != 2 && UD[i] == UD[2]) {
-            pickUD(i);
-            return;
-        }
-        if (i != 3 && UD[i] == UD[3]) {
-            pickUD(i);
-            return;
-        }
-        if (i != 4 && UD[i] == UD[4]) {
-            pickUD(i);
-            return;
-        }
-
     }
 
     private void pickLR(int i) {
@@ -248,27 +290,34 @@ int score=0;
     }
 
     private void rePickLR(int i) {
+        if (LR[i] == 0) {
+            if (!LRZero) {
+                LRZero = true;
+            } else {
+                pickLR(i);
+            }
+        } else {
+            if (i != 0 && LR[i] == LR[0]) {
+                pickLR(i);
+                return;
+            }
+            if (i != 1 && LR[i] == LR[1]) {
+                pickLR(i);
+                return;
+            }
+            if (i != 2 && LR[i] == LR[2]) {
+                pickLR(i);
+                return;
+            }
+            if (i != 3 && LR[i] == LR[3]) {
+                pickLR(i);
+                return;
 
-        if (i != 0 && LR[i] == LR[0]) {
-            pickLR(i);
-            return;
-        }
-        if (i != 1 && LR[i] == LR[1]) {
-            pickLR(i);
-            return;
-        }
-        if (i != 2 && LR[i] == LR[2]) {
-            pickLR(i);
-            return;
-        }
-        if (i != 3 && LR[i] == LR[3]) {
-            pickLR(i);
-            return;
+            }
+            if (i != 4 && LR[i] == LR[4]) {
+                pickLR(i);
 
-        }
-        if (i != 4 && LR[i] == LR[4]) {
-            pickLR(i);
-
+            }
         }
     }
 
@@ -285,27 +334,33 @@ int score=0;
     }
 
     private void execute() {
-
+         lost = false;
         for (int i = 0; i <= rNumUD; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[UD[i]][j].getFill().equals(m)) {
-                    lose();
-                    return;
+                    r[UD[i]][j].setFill(red);
+
+                    lost = true;
                 } else {
                     r[UD[i]][j].setFill(Color.RED);
 
                 }
             }
         }
+
         for (int j = 0; j <= rNumLR; j++) {
             for (int i = 0; i <= 4; i++) {
                 if (r[i][LR[j]].getFill().equals(m)) {
-                    lose();
-                    return;
+                    r[i][LR[j]].setFill(red);
+                    lost = true;
                 } else {
                     r[i][LR[j]].setFill(Color.RED);
                 }
             }
+        }
+        if (lost) {
+            lose();
+            return;
         }
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 1; j++) {
@@ -316,7 +371,7 @@ int score=0;
     }
 
     private void timer() {
-        
+
         if (rotation == 1) {
             for (int i = 0; i <= 4; i++) {
                 for (int j = 0; j <= 4; j++) {
@@ -332,7 +387,6 @@ int score=0;
                 }
             }
             r[ii][jj].setFill(m);
-
 
             randomPick();
             rotation = 2;
@@ -350,14 +404,117 @@ int score=0;
 
             execute();
             rotation = 1;
-            score+=100;
+            if (!lost) {
+            score += 100;
+            lblScore.setText("score: " + score);
+            }
         }
 
     }
+   private void death(){
+                 // parent48 = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
+            MainApp.pLastScene ="/fxml/dodge.fxml";
+
+        //} catch (IOException ex) {
+            //ex.printStackTrace();
+       // }
+        MainApp.initialize = true;
+
+        Parent parentLose;
+        try {
+            parentLose = FXMLLoader.load(getClass().getResource("/fxml/winLose.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneLose = new Scene(parentLose);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblT2).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneLose); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneLose.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private void lose() {
-        System.out.println("lose");
         timeline.stop();
+        MainApp.credits+=score*MainApp.multiplier;
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
+        System.out.println("yeet");
+        MainApp.pWin = false;
+        MainApp.pMessage = "You now have $" + MainApp.credits;
+        //Parent parent48;
+        MainApp.initialize = false;
+        //try {
+pause.play();
+  
+    }
+
+    @FXML
+    private void about(ActionEvent e) {
+        showInstructions();
+    }
+
+    @FXML
+    private void showInstructions() {
+        alert.setTitle("Instructions");
+        alert.setHeaderText(null);
+        alert.setContentText("1. move your guy around the board with arrow keys "
+                + "\n 2. watchout for warnings"
+                + "\n 3. Dont get caught in the red"
+                + "\n 4. you lose if you are in the red");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void goHome(ActionEvent e) {
+        Parent parentHome;
+        try {
+            parentHome = FXMLLoader.load(getClass().getResource("/fxml/home.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene sceneHome = new Scene(parentHome);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) lblB0).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(sceneHome); //puts the new scence in the stage
+
+//stage.setTitle("Page 2"); //changes the title
+            stage.show(); //shows the new page
+            sceneHome.getRoot().requestFocus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void replay(ActionEvent e) {
+        reset();
+    }
+
+    private void reset() {
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 4; j++) {
+                r[i][j].setFill(Color.TRANSPARENT);
+            }
+        }
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 1; j++) {
+                topBottom[i][j].setText("");
+                sides[i][j].setText("");
+            }
+        }
+        r[2][2].setFill(m);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        score = 0;
     }
 
     @Override
@@ -453,9 +610,12 @@ int score=0;
 
         sides[4][0] = lblL4;
         r[2][2].setFill(m);
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        if (MainApp.initialize) {
+            showInstructions();
+            reset();
+            
+            
+        }
     }
 
 }

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -79,6 +82,7 @@ public class Twenty48Controller implements Initializable {
     boolean endG = false;
     int score = 0;
     Alert alert = new Alert(AlertType.INFORMATION);
+      //  Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> );
 
     String merge1;
 
@@ -381,16 +385,14 @@ public class Twenty48Controller implements Initializable {
 
         MainApp.pWin = true;
         MainApp.pMessage = "You now have $" + MainApp.credits;
-        Parent parent48;
         MainApp.initialize = false;
-        try {
-
-            parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene = new Scene(parent48);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//
+            MainApp.pLastScene = "/fxml/twenty48.fxml";
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
         MainApp.initialize = true;
 
         Parent parentLose;
@@ -504,16 +506,10 @@ public class Twenty48Controller implements Initializable {
 
             MainApp.pWin = false;
             MainApp.pMessage = "You now have $" + MainApp.credits;
-            Parent parent48;
             MainApp.initialize = false;
-            try {
 
-                parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-                MainApp.pLastScene = new Scene(parent48);
+                MainApp.pLastScene = "/fxml/twenty48.fxml";
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
             MainApp.initialize = true;
 
             Parent parentLose;

@@ -409,7 +409,7 @@ public class FXMLController implements Initializable {
         try {//if initialize = false then do not show instructions when the fxml is loaded
             MainApp.initialize = false;
             parentWood = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene = new Scene(parentWood);//makes this scene the last scene visited
+            MainApp.pLastScene = "/fxml/Scene.fxml";//makes this scene the last scene visited
             MainApp.initialize = true;
         } catch (IOException ex) {
             ex.printStackTrace();
