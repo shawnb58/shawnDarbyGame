@@ -130,25 +130,24 @@ public class DodgeController implements Initializable {
     private Label lblL4;
     @FXML
     private Label lblScore;
-    Image man = new Image(getClass().getResource("/stickman.png").toString());
-    Image rMan = new Image(getClass().getResource("/stickmanRed.png").toString());
+    Image man = new Image(getClass().getResource("/stickman.png").toString()); //guy
+    Image rMan = new Image(getClass().getResource("/stickmanRed.png").toString()); //guy after death
 
     Rectangle r[][] = new Rectangle[5][5];
-    int UD[] = new int[5];
-    int LR[] = new int[5];
-    ImagePattern m = new ImagePattern(man);
-    ImagePattern red = new ImagePattern(rMan);
+    int UD[] = new int[5]; //array of the vertical random spaces
+    int LR[] = new int[5]; //array of the horizontal random spaces
+    ImagePattern m = new ImagePattern(man); //guy
+    ImagePattern red = new ImagePattern(rMan); //guy after death
 
-    Label topBottom[][] = new Label[5][2];
-    Label sides[][] = new Label[5][2];
-    int score = 0;
-    int rNumUD; //4
-    int rNumLR; //4
+    Label topBottom[][] = new Label[5][2]; //array of labels on the top and bottom
+    Label sides[][] = new Label[5][2]; //array of labels on left and right
+    int score = 0; //score
+    int rNumUD; //3     number of vericle lines
+    int rNumLR; //3     number of horizontal lines
 
-    int rAmount; //5
-    int rSide;  //2 
-    int rotation = 1;
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer()));
+    int rSide;  //2 random decides if the warning will show on the botto or top and left or right
+    int rotation = 1; //what stage the timer is in
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer())); //runs the 
         Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> death()));
 
     int ii;
@@ -161,7 +160,9 @@ public class DodgeController implements Initializable {
 
     @FXML
     private void key(KeyEvent ke) {
+        //keeps the key press from working after you lose
 if (!lost){
+    //makes global variables for place with the guy
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[i][j].getFill().equals(m)) {
@@ -242,8 +243,7 @@ if (!lost){
             pickLR(i);
 
         }
-        System.out.println("n of vert" + rNumUD);
-        System.out.println("n of hor" + rNumLR);
+        
     }
 
     private void pickUD(int i) {
@@ -279,7 +279,6 @@ if (!lost){
             }
             if (i != 4 && UD[i] == UD[4]) {
                 pickUD(i);
-                return;
             }
         }
     }
@@ -335,6 +334,7 @@ if (!lost){
 
     private void execute() {
          lost = false;
+         //hardest code;;
         for (int i = 0; i <= rNumUD; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[UD[i]][j].getFill().equals(m)) {
@@ -347,7 +347,7 @@ if (!lost){
                 }
             }
         }
-
+// to here
         for (int j = 0; j <= rNumLR; j++) {
             for (int i = 0; i <= 4; i++) {
                 if (r[i][LR[j]].getFill().equals(m)) {
@@ -466,10 +466,10 @@ pause.play();
     private void showInstructions() {
         alert.setTitle("Instructions");
         alert.setHeaderText(null);
-        alert.setContentText("1. move your guy around the board with arrow keys "
-                + "\n 2. watchout for warnings"
+        alert.setContentText("1. Move your guy around the board with arrow keys "
+                + "\n 2. Watchout for warnings"
                 + "\n 3. Dont get caught in the red"
-                + "\n 4. you lose if you are in the red");
+                + "\n 4. You lose if you are in the red");
         alert.showAndWait();
     }
 
