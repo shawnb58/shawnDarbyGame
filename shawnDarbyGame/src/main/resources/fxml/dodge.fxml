@@ -18,9 +18,9 @@
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
                   <Stop color="#000000dc" />
-                  <Stop color="#000000bb" offset="0.007656967840735069" />
+                  <Stop color="#00000054" offset="0.007656967840735069" />
                   <Stop color="#99941a" offset="0.5138147857333691" />
-                  <Stop color="#c9c7c7" offset="1.0" />
+                  <Stop color="#c7c7c7d0" offset="1.0" />
                </stops>
             </LinearGradient>
          </fill>
@@ -50,83 +50,83 @@
       <Rectangle fx:id="rec21" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="300.0" layoutY="414.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
       <Rectangle fx:id="rec31" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="400.0" layoutY="414.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
       <Rectangle fx:id="rec41" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" layoutX="500.0" layoutY="414.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-      <Label fx:id="lblT0" ellipsisString="!" layoutX="136.0" layoutY="72.0" textFill="RED">
+      <Label fx:id="lblT0" ellipsisString="!" layoutX="136.0" layoutY="72.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblR0" ellipsisString="!" layoutX="620.0" layoutY="548.0" textFill="RED">
+      <Label fx:id="lblR0" ellipsisString="!" layoutX="620.0" layoutY="548.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblR1" ellipsisString="!" layoutX="620.0" layoutY="448.0" textFill="RED">
+      <Label fx:id="lblR1" ellipsisString="!" layoutX="620.0" layoutY="448.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblR2" ellipsisString="!" layoutX="620.0" layoutY="348.0" textFill="RED">
+      <Label fx:id="lblR2" ellipsisString="!" layoutX="620.0" layoutY="348.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblR3" ellipsisString="!" layoutX="620.0" layoutY="248.0" textFill="RED">
+      <Label fx:id="lblR3" ellipsisString="!" layoutX="620.0" layoutY="248.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblR4" ellipsisString="!" layoutX="620.0" layoutY="148.0" textFill="RED">
+      <Label fx:id="lblR4" ellipsisString="!" layoutX="620.0" layoutY="148.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblL0" ellipsisString="!" layoutX="51.0" layoutY="546.0" textFill="RED">
+      <Label fx:id="lblL0" ellipsisString="!" layoutX="51.0" layoutY="546.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblL1" ellipsisString="!" layoutX="51.0" layoutY="446.0" textFill="RED">
+      <Label fx:id="lblL1" ellipsisString="!" layoutX="51.0" layoutY="446.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblL2" ellipsisString="!" layoutX="51.0" layoutY="346.0" textFill="RED">
+      <Label fx:id="lblL2" ellipsisString="!" layoutX="51.0" layoutY="346.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblL3" ellipsisString="!" layoutX="51.0" layoutY="246.0" textFill="RED">
+      <Label fx:id="lblL3" ellipsisString="!" layoutX="51.0" layoutY="246.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblL4" ellipsisString="!" layoutX="51.0" layoutY="146.0" textFill="RED">
+      <Label fx:id="lblL4" ellipsisString="!" layoutX="51.0" layoutY="146.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblB4" ellipsisString="!" layoutX="536.0" layoutY="638.0" textFill="RED">
+      <Label fx:id="lblB4" ellipsisString="!" layoutX="536.0" layoutY="638.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblB3" ellipsisString="!" layoutX="436.0" layoutY="638.0" textFill="RED">
+      <Label fx:id="lblB3" ellipsisString="!" layoutX="436.0" layoutY="638.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblB2" ellipsisString="!" layoutX="336.0" layoutY="638.0" textFill="RED">
+      <Label fx:id="lblB2" ellipsisString="!" layoutX="336.0" layoutY="638.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblB1" ellipsisString="!" layoutX="236.0" layoutY="638.0" textFill="RED">
+      <Label fx:id="lblB1" ellipsisString="!" layoutX="236.0" layoutY="638.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblT1" ellipsisString="!" layoutX="236.0" layoutY="72.0" textFill="RED">
+      <Label fx:id="lblT1" ellipsisString="!" layoutX="236.0" layoutY="72.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblT2" ellipsisString="!" layoutX="336.0" layoutY="72.0" textFill="RED">
+      <Label fx:id="lblT2" ellipsisString="!" layoutX="336.0" layoutY="72.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblT3" ellipsisString="!" layoutX="436.0" layoutY="72.0" textFill="RED">
+      <Label fx:id="lblT3" ellipsisString="!" layoutX="436.0" layoutY="72.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblT4" ellipsisString="!" layoutX="536.0" layoutY="72.0" textFill="RED">
+      <Label fx:id="lblT4" ellipsisString="!" layoutX="536.0" layoutY="72.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
-      <Label fx:id="lblB0" ellipsisString="!" layoutX="136.0" layoutY="638.0" textFill="RED">
+      <Label fx:id="lblB0" ellipsisString="!" layoutX="136.0" layoutY="638.0" textFill="#922020">
          <font>
             <Font name="Elephant Italic" size="32.0" />
          </font></Label>
