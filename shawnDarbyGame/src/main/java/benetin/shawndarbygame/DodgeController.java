@@ -149,15 +149,19 @@ public class DodgeController implements Initializable {
     int rSide;  //2 
     int rotation = 1;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer()));
+        Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> death()));
+
     int ii;
     int jj;
     boolean UDZero = true;
     boolean LRZero = true;
+            boolean lost;
+
     Alert alert = new Alert(AlertType.INFORMATION);
 
     @FXML
     private void key(KeyEvent ke) {
-
+if (!lost){
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[i][j].getFill().equals(m)) {
@@ -171,6 +175,7 @@ public class DodgeController implements Initializable {
                 if (r[ii][jj + 1].getFill().equals(Color.RED)) {
                     r[ii][jj + 1].setFill(red);
                     r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
 
                 } else {
@@ -185,6 +190,7 @@ public class DodgeController implements Initializable {
                 if (r[ii + 1][jj].getFill().equals(Color.RED)) {
                     r[ii][jj + 1].setFill(red);
                     r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
                 } else {
                     r[ii + 1][jj].setFill(m);
@@ -212,6 +218,7 @@ public class DodgeController implements Initializable {
                 if (r[ii - 1][jj].getFill().equals(Color.RED)) {
                     r[ii][jj + 1].setFill(red);
                     r[ii][jj].setFill(Color.TRANSPARENT);
+                    lost=true;
                     lose();
                 } else {
                     r[ii - 1][jj].setFill(m);
@@ -221,7 +228,7 @@ public class DodgeController implements Initializable {
             }
         }
     }
-
+    }
     private void randomPick() {
         UDZero = false;
         rNumUD = ThreadLocalRandom.current().nextInt(3);
@@ -327,7 +334,7 @@ public class DodgeController implements Initializable {
     }
 
     private void execute() {
-        boolean lost = false;
+         lost = false;
         for (int i = 0; i <= rNumUD; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[UD[i]][j].getFill().equals(m)) {
@@ -397,28 +404,15 @@ public class DodgeController implements Initializable {
 
             execute();
             rotation = 1;
+            if (!lost) {
             score += 100;
             lblScore.setText("score: " + score);
+            }
         }
 
     }
-
-    private void lose() {
-        timeline.stop();
-        MainApp.credits+=score*MainApp.multiplier;
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException ex) {
-//            ex.printStackTrace();
-//        }
-        System.out.println("yeet");
-        MainApp.pWin = false;
-        MainApp.pMessage = "You now have $" + MainApp.credits;
-        //Parent parent48;
-        MainApp.initialize = false;
-        //try {
-
-           // parent48 = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
+   private void death(){
+                 // parent48 = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
             MainApp.pLastScene ="/fxml/dodge.fxml";
 
         //} catch (IOException ex) {
@@ -443,6 +437,24 @@ public class DodgeController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void lose() {
+        timeline.stop();
+        MainApp.credits+=score*MainApp.multiplier;
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
+        System.out.println("yeet");
+        MainApp.pWin = false;
+        MainApp.pMessage = "You now have $" + MainApp.credits;
+        //Parent parent48;
+        MainApp.initialize = false;
+        //try {
+pause.play();
+  
     }
 
     @FXML
@@ -599,7 +611,9 @@ public class DodgeController implements Initializable {
         sides[4][0] = lblL4;
         r[2][2].setFill(m);
         if (MainApp.initialize) {
+            showInstructions();
             reset();
+            
             
         }
     }
