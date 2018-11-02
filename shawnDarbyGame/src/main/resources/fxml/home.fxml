@@ -79,5 +79,6 @@
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="506.0" mnemonicParsing="false" onAction="#storeClick" text="Store" />
+      <Button layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="28.0" prefWidth="59.0" text="Exit" />
    </children>
 </AnchorPane>
