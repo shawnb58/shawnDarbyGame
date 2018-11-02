@@ -381,16 +381,14 @@ public class Twenty48Controller implements Initializable {
 
         MainApp.pWin = true;
         MainApp.pMessage = "You now have $" + MainApp.credits;
-        Parent parent48;
         MainApp.initialize = false;
-        try {
-
-            parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene = new Scene(parent48);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//
+            MainApp.pLastScene = "/fxml/twenty48.fxml";
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
         MainApp.initialize = true;
 
         Parent parentLose;
@@ -504,16 +502,10 @@ public class Twenty48Controller implements Initializable {
 
             MainApp.pWin = false;
             MainApp.pMessage = "You now have $" + MainApp.credits;
-            Parent parent48;
             MainApp.initialize = false;
-            try {
 
-                parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-                MainApp.pLastScene = new Scene(parent48);
+                MainApp.pLastScene = "/fxml/twenty48.fxml";
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
             MainApp.initialize = true;
 
             Parent parentLose;

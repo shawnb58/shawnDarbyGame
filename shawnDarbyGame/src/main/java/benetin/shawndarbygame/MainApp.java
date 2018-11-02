@@ -18,7 +18,7 @@ public class MainApp extends Application {
     public static boolean gameOver;//to check if user is in the middle of a game
     public static boolean pWin = false;//p=public//if they won or lost
     public static String pMessage;//message for win/Lose  
-    public static Scene pLastScene;//last scene visited (to play agin)
+    public static String pLastScene;//last scene visited (to play agin)
     public static boolean initialize = true; //if false it wont initialize in the games
     public static int multiplier = 1;//score multiplier (ca be bought)
     public static String song = "elevator"; //used ot change music

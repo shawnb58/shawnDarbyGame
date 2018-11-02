@@ -61,7 +61,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="192.0" layoutX="195.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
       <ImageView fitHeight="181.0" fitWidth="227.0" layoutX="200.0" layoutY="323.0" onMouseClicked="#openDodge" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../twenty48.PNG" />
+            <Image url="@../dodgeImage.PNG" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
