@@ -68,7 +68,7 @@
          </cursor>
       </ImageView>
       <Label layoutX="255.0" layoutY="518.0" text="Dodge Game" textFill="WHITE" />
-      <Rectangle fx:id="recCheat" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="282.0" layoutY="266.0" onMouseClicked="#cheat" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="17.0">
+      <Rectangle fx:id="recCheat" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="270.0" layoutY="254.0" onMouseClicked="#cheat" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="17.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -79,5 +79,6 @@
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="506.0" mnemonicParsing="false" onAction="#storeClick" text="Store" />
+      <Button layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="28.0" prefWidth="59.0" text="Exit" />
    </children>
 </AnchorPane>

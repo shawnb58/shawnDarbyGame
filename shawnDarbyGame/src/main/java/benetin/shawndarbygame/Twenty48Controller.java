@@ -503,7 +503,7 @@ public class Twenty48Controller implements Initializable {
         if (!upGo && !rightGo && !downGo && !leftGo /*&& !endG*/) {
             //    lose!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             MainApp.credits += score;
-
+            
             MainApp.pWin = false;
             MainApp.pMessage = "You now have $" + MainApp.credits;
             MainApp.initialize = false;

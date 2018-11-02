@@ -59,6 +59,11 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    private void exit(ActionEvent e) {
+        System.exit(0);
+    }
+
+    @FXML
     private void open2048(MouseEvent m) {//open 2048 game
         Parent parent2048;
         try {
