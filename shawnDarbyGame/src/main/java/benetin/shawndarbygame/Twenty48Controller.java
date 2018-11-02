@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -77,6 +82,7 @@ public class Twenty48Controller implements Initializable {
     boolean endG = false;
     int score = 0;
     Alert alert = new Alert(AlertType.INFORMATION);
+      //  Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> );
 
     String merge1;
 
@@ -379,16 +385,14 @@ public class Twenty48Controller implements Initializable {
 
         MainApp.pWin = true;
         MainApp.pMessage = "You now have $" + MainApp.credits;
-        Parent parent48;
         MainApp.initialize = false;
-        try {
-
-            parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene = new Scene(parent48);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//
+            MainApp.pLastScene = "/fxml/twenty48.fxml";
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
         MainApp.initialize = true;
 
         Parent parentLose;
@@ -473,7 +477,7 @@ public class Twenty48Controller implements Initializable {
                     l[i][j].setStyle("-fx-background-color:rgb(244,100,50) ");
 
                     //you win
-                    MainApp.credits += score;
+                    MainApp.credits += score * MainApp.multiplier;
                     win();
                 } else {
                     l[i][j].setStyle(null);
@@ -502,16 +506,10 @@ public class Twenty48Controller implements Initializable {
 
             MainApp.pWin = false;
             MainApp.pMessage = "You now have $" + MainApp.credits;
-            Parent parent48;
             MainApp.initialize = false;
-            try {
 
-                parent48 = FXMLLoader.load(getClass().getResource("/fxml/twenty48.fxml")); //where FXMLPage2 is the name of the scene
-                MainApp.pLastScene = new Scene(parent48);
+                MainApp.pLastScene = "/fxml/twenty48.fxml";
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
             MainApp.initialize = true;
 
             Parent parentLose;
@@ -790,9 +788,21 @@ public class Twenty48Controller implements Initializable {
         l[3][1] = lbl31;
         l[3][2] = lbl32;
         l[3][3] = lbl33;
-
         place();
+        MainApp.playing = MainApp.player.getStatus().equals(MediaPlayer.Status.PLAYING);
+        if (!MainApp.playing) {
+            MainApp.player.stop();
+            if (MainApp.song.equals("elevator")) {
 
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
+            } else {
+                MainApp.player = new MediaPlayer((new Media(getClass().getResource("/uke.mp3").toString())));
+            }
+
+            MainApp.player.setCycleCount(MediaPlayer.INDEFINITE);
+            MainApp.player.play();
+
+        }
     }
 
 }

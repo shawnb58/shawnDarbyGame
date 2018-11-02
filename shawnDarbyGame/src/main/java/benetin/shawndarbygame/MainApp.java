@@ -9,47 +9,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class MainApp extends Application {
 
     public static int credits = 0;
-    public static boolean gameOver;
-    public static boolean pWin = false;//p=public
-    public static String pMessage;
-    public static Scene pLastScene;
+    public static boolean gameOver;//to check if user is in the middle of a game
+    public static boolean pWin = false;//p=public//if they won or lost
+    public static String pMessage;//message for win/Lose  
+    public static String pLastScene;//last scene visited (to play agin)
     public static boolean initialize = true; //if false it wont initialize in the games
-    MediaPlayer player;
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(190000), ae -> music()));
+    public static int multiplier = 1;//score multiplier (ca be bought)
+    public static String song = "elevator"; //used ot change music
+    public static MediaPlayer player;
+    public static boolean playing = false;//if false then no music is playing
+    public static boolean homeFlash = false;//flashing background
 
-    public void music() {
-        player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
-        player.play();
-    }
-
-//    public static void lost(boolean win, String message, Scene lastScene) {
-//        pWin = win;
-//        pMessage = message;
-//        pLastScene = lastScene;
-//        
-//    }
     @Override
     public void start(Stage stage) throws Exception {
+        MainApp.player = new MediaPlayer((new Media(getClass().getResource("/Elevator-music.mp3").toString())));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
 
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styles.css");
 
-        stage.setTitle("Mini Programs");
+        stage.setTitle("Games Galore");
         stage.setScene(scene);
         stage.show();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-        music();
+
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
@@ -63,6 +51,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+
     }
 
 }
