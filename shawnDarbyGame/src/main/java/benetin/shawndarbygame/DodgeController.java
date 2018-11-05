@@ -147,113 +147,128 @@ public class DodgeController implements Initializable {
 
     int rSide;  //2 random decides if the warning will show on the botto or top and left or right
     int rotation = 1; //what stage the timer is in
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer())); //runs the 
-        Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> death()));
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> timer())); //runs the lasers 
+    Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> death())); //pauses the game after death 
 
-    int ii;
-    int jj;
-    boolean UDZero = true;
-    boolean LRZero = true;
-            boolean lost;
+    int ii; //global variable of the guys x coordinate
+    int jj; //global variable of the guys y coordinate
+    boolean UDZero = true; //if the random number is zero
+    boolean LRZero = true; //
+    boolean lost; //if you lose the game (which you just did)
 
     Alert alert = new Alert(AlertType.INFORMATION);
 
     @FXML
     private void key(KeyEvent ke) {
         //keeps the key press from working after you lose
-if (!lost){
-    //makes global variables for place with the guy
-        for (int i = 0; i <= 4; i++) {
-            for (int j = 0; j <= 4; j++) {
-                if (r[i][j].getFill().equals(m)) {
-                    ii = i;
-                    jj = j;
+        if (!lost) {
+            //makes global variables for place with the guy
+            for (int i = 0; i <= 4; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    if (r[i][j].getFill().equals(m)) {
+                        ii = i;
+                        jj = j;
+                    }
                 }
             }
-        }
-        if (ke.getCode() == KeyCode.UP) {
-            try {
-                if (r[ii][jj + 1].getFill().equals(Color.RED)) {
-                    r[ii][jj + 1].setFill(red);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
-                    lost=true;
-                    lose();
+            if (ke.getCode() == KeyCode.UP) {
+                try {
+                    //if walking into a laser you lose
+                    if (r[ii][jj + 1].getFill().equals(Color.RED)) {
+                        r[ii][jj + 1].setFill(red);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                        lost = true;
+                        lose();
 
-                } else {
-                    r[ii][jj + 1].setFill(m);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
+                    } else {
+                        //moves them up
+                        r[ii][jj + 1].setFill(m);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                    }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
-        }
-        if (ke.getCode() == KeyCode.RIGHT) {
-            try {
-                if (r[ii + 1][jj].getFill().equals(Color.RED)) {
-                    r[ii][jj + 1].setFill(red);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
-                    lost=true;
-                    lose();
-                } else {
-                    r[ii + 1][jj].setFill(m);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
+            if (ke.getCode() == KeyCode.RIGHT) {
+                try {
+                    //lost
+                    if (r[ii + 1][jj].getFill().equals(Color.RED)) {
+                        r[ii + 1][jj].setFill(red);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                        lost = true;
+                        lose();
+                    } else {
+                        //moves right
+                        r[ii + 1][jj].setFill(m);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                    }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
-        }
-        if (ke.getCode() == KeyCode.DOWN) {
-            try {
-                if (r[ii][jj - 1].getFill().equals(Color.RED)) {
-                    r[ii][jj + 1].setFill(red);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
-                    lose();
-                } else {
-                    r[ii][jj - 1].setFill(m);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
+            if (ke.getCode() == KeyCode.DOWN) {
+                try {
+                    //lose
+                    if (r[ii][jj - 1].getFill().equals(Color.RED)) {
+                        r[ii][jj - 1].setFill(red);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                        lost = true;
+                        lose();
+                    } else {
+                        //move down
+                        r[ii][jj - 1].setFill(m);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                    }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
-        }
-        if (ke.getCode() == KeyCode.LEFT) {
-            try {
-
-                if (r[ii - 1][jj].getFill().equals(Color.RED)) {
-                    r[ii][jj + 1].setFill(red);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
-                    lost=true;
-                    lose();
-                } else {
-                    r[ii - 1][jj].setFill(m);
-                    r[ii][jj].setFill(Color.TRANSPARENT);
+            if (ke.getCode() == KeyCode.LEFT) {
+                try {
+//lose
+                    if (r[ii - 1][jj].getFill().equals(Color.RED)) {
+                        r[ii - 1][jj].setFill(red);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                        lost = true;
+                        lose();
+                    } else {
+                        //move left
+                        r[ii - 1][jj].setFill(m);
+                        r[ii][jj].setFill(Color.TRANSPARENT);
+                    }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
         }
     }
-    }
+
     private void randomPick() {
+
         UDZero = false;
+        //picks number of lasers in each direction
         rNumUD = ThreadLocalRandom.current().nextInt(3);
         for (int i = 0; i <= rNumUD; i++) {
+            //runs this for each laser
             pickUD(i);
 
         }
+
         LRZero = false;
+
         rNumLR = ThreadLocalRandom.current().nextInt(3);
         for (int i = 0; i <= rNumLR; i++) {
             pickLR(i);
 
         }
-        
+
     }
 
     private void pickUD(int i) {
+        //pickes a spot for the laser to go
         UD[i] = ThreadLocalRandom.current().nextInt(5);
-        System.out.println(UD[i]);
         rePickUD(i);
     }
 
     private void rePickUD(int i) {
-
+    //checks if that spot is already taken
+    //if so repicks
         if (UD[i] == 0) {
             if (!UDZero) {
                 UDZero = true;
@@ -282,6 +297,7 @@ if (!lost){
             }
         }
     }
+//horizontal
 
     private void pickLR(int i) {
         LR[i] = ThreadLocalRandom.current().nextInt(5);
@@ -321,8 +337,11 @@ if (!lost){
     }
 
     private void warning() {
+        //gives the warnings 
         for (int i = 0; i <= rNumUD; i++) {
+            //pick the side on which the warning is on
             rSide = ThreadLocalRandom.current().nextInt(2);
+            //set the warning
             topBottom[UD[i]][rSide].setText("!");
         }
         for (int i = 0; i <= rNumLR; i++) {
@@ -331,15 +350,15 @@ if (!lost){
         }
 
     }
+//places the lasers and checks if the player is in them
 
     private void execute() {
-         lost = false;
-         //hardest code;;
+        lost = false;
+        //hardest code;;
         for (int i = 0; i <= rNumUD; i++) {
             for (int j = 0; j <= 4; j++) {
                 if (r[UD[i]][j].getFill().equals(m)) {
                     r[UD[i]][j].setFill(red);
-
                     lost = true;
                 } else {
                     r[UD[i]][j].setFill(Color.RED);
@@ -350,7 +369,7 @@ if (!lost){
 // to here
         for (int j = 0; j <= rNumLR; j++) {
             for (int i = 0; i <= 4; i++) {
-                if (r[i][LR[j]].getFill().equals(m)) {
+                if (r[i][LR[j]].getFill().equals(m) || r[i][LR[j]].getFill().equals(red)) {
                     r[i][LR[j]].setFill(red);
                     lost = true;
                 } else {
@@ -358,10 +377,12 @@ if (!lost){
                 }
             }
         }
+        //lets all the lasers place before ending the game.  make the end scene nicer
         if (lost) {
             lose();
             return;
         }
+        //reset labels
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 1; j++) {
                 topBottom[i][j].setText("");
@@ -373,6 +394,7 @@ if (!lost){
     private void timer() {
 
         if (rotation == 1) {
+            //sets the location of the player to a global variable
             for (int i = 0; i <= 4; i++) {
                 for (int j = 0; j <= 4; j++) {
                     if (r[i][j].getFill().equals(m)) {
@@ -381,11 +403,13 @@ if (!lost){
                     }
                 }
             }
+            //resets all rectangles to transparent
             for (int i = 0; i <= 4; i++) {
                 for (int j = 0; j <= 4; j++) {
                     r[i][j].setFill(Color.TRANSPARENT);
                 }
             }
+            //sets the player to the player
             r[ii][jj].setFill(m);
 
             randomPick();
@@ -404,20 +428,18 @@ if (!lost){
 
             execute();
             rotation = 1;
+            //stops the score from adding after death
             if (!lost) {
-            score += 100;
-            lblScore.setText("score: " + score);
+                score += 100;
+                lblScore.setText("score: " + score);
             }
         }
 
     }
-   private void death(){
-                 // parent48 = FXMLLoader.load(getClass().getResource("/fxml/dodge.fxml")); //where FXMLPage2 is the name of the scene
-            MainApp.pLastScene ="/fxml/dodge.fxml";
 
-        //} catch (IOException ex) {
-            //ex.printStackTrace();
-       // }
+    private void death() {
+        MainApp.pLastScene = "/fxml/dodge.fxml";
+
         MainApp.initialize = true;
 
         Parent parentLose;
@@ -431,7 +453,6 @@ if (!lost){
             stage.hide(); //optional
             stage.setScene(sceneLose); //puts the new scence in the stage
 
-//stage.setTitle("Page 2"); //changes the title
             stage.show(); //shows the new page
             sceneLose.getRoot().requestFocus();
         } catch (IOException ex) {
@@ -441,20 +462,15 @@ if (!lost){
 
     private void lose() {
         timeline.stop();
-        MainApp.credits+=score*MainApp.multiplier;
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException ex) {
-//            ex.printStackTrace();
-//        }
-        System.out.println("yeet");
+        //gives credits
+        MainApp.credits += score * MainApp.multiplier;
+
         MainApp.pWin = false;
         MainApp.pMessage = "You now have $" + MainApp.credits;
-        //Parent parent48;
         MainApp.initialize = false;
-        //try {
-pause.play();
-  
+        //gives time to see how you lost
+        pause.play();
+
     }
 
     @FXML
@@ -486,7 +502,6 @@ pause.play();
             stage.hide(); //optional
             stage.setScene(sceneHome); //puts the new scence in the stage
 
-//stage.setTitle("Page 2"); //changes the title
             stage.show(); //shows the new page
             sceneHome.getRoot().requestFocus();
         } catch (IOException ex) {
@@ -613,8 +628,7 @@ pause.play();
         if (MainApp.initialize) {
             showInstructions();
             reset();
-            
-            
+
         }
     }
 
