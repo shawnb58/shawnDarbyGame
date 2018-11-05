@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,21 +69,21 @@ public class Twenty48Controller implements Initializable {
     @FXML
     private Label lblScore;
     Label l[][] = new Label[4][4];
-    int in[][] = new int[4][4];
-    int randX;
-    int randY;
-    int numPick;
-    int dir;
+    int in[][] = new int[4][4]; //values of each label
+    int randX; //random x
+    int randY; //random y
+    int numPick; //either 2 or 4
+    int dir; //which is being moved 
+    //if possible
     boolean upGo = false;
     boolean downGo = false;
     boolean leftGo = false;
     boolean rightGo = false;
+    //end of the game
     boolean endG = false;
     int score = 0;
     Alert alert = new Alert(AlertType.INFORMATION);
-      //  Timeline pause = new Timeline(new KeyFrame(Duration.millis(1000), ae -> );
 
-    String merge1;
 
     @FXML
     private void pressed(KeyEvent e) {
@@ -200,17 +199,14 @@ public class Twenty48Controller implements Initializable {
                 if (in[i][j + 3] == 0) {
                     in[i][j + 3] = in[i][j + 2];
                     in[i][j + 2] = 0;
-
                 }
                 if (in[i][j + 2] == 0) {
                     in[i][j + 2] = in[i][j + 1];
                     in[i][j + 1] = 0;
-
                 }
                 if (in[i][j + 1] == 0) {
                     in[i][j + 1] = in[i][j];
                     in[i][j] = 0;
-
                 }
 
             }
@@ -406,7 +402,6 @@ public class Twenty48Controller implements Initializable {
             stage.hide(); //optional
             stage.setScene(sceneLose); //puts the new scence in the stage
 
-//stage.setTitle("Page 2"); //changes the title
             stage.show(); //shows the new page
             sceneLose.getRoot().requestFocus();
         } catch (IOException ex) {
@@ -424,6 +419,7 @@ public class Twenty48Controller implements Initializable {
                 }
             }
         }
+        //setting the random
         randX = ThreadLocalRandom.current().nextInt(4);
         randY = ThreadLocalRandom.current().nextInt(4);
         numPick = ThreadLocalRandom.current().nextInt(2);
@@ -453,6 +449,7 @@ public class Twenty48Controller implements Initializable {
                 }
 
                 score += in[i][j];
+                //setting colors
                 if (in[i][j] == 2) {
                     l[i][j].setStyle("-fx-background-color:rgb(244,66,244) ");
                 } else if (in[i][j] == 4) {
@@ -492,6 +489,7 @@ public class Twenty48Controller implements Initializable {
         rightGo = false;
         leftGo = false;
 
+        //check to see where they can move
         mergeUpC();
         moveUpC();
         mergeRightC();
@@ -500,8 +498,8 @@ public class Twenty48Controller implements Initializable {
         moveDownC();
         mergeLeftC();
         moveLeftC();
-        if (!upGo && !rightGo && !downGo && !leftGo /*&& !endG*/) {
-            //    lose!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (!upGo && !rightGo && !downGo && !leftGo) {
+            //    lose!
             MainApp.credits += score;
             
             MainApp.pWin = false;
@@ -532,7 +530,7 @@ public class Twenty48Controller implements Initializable {
         }
 
     }
-
+//check if possible
     private void mergeUpC() {
         //merge
         for (int i = 0; i <= 3; i++) {
@@ -739,7 +737,6 @@ public class Twenty48Controller implements Initializable {
             stage.hide(); //optional
             stage.setScene(sceneHome); //puts the new scence in the stage
 
-//stage.setTitle("Page 2"); //changes the title
             stage.show(); //shows the new page
             sceneHome.getRoot().requestFocus();
         } catch (IOException ex) {
